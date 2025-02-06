@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Feb 06 21:10:26 2025
+[*]
+[dumpfile] "E:\Karan\OneDrive - Indian Institute of Technology Bombay\EE_SEM4\Seminar_stuff\code\waveforms.vcd"
+[dumpfile_mtime] "Thu Feb 06 21:00:09 2025"
+[dumpfile_size] 1952
+[savefile] "E:\Karan\OneDrive - Indian Institute of Technology Bombay\EE_SEM4\Seminar_stuff\code\gtksetting1.gtkw"
+[timestart] 0
+[size] 1280 729
+[pos] -139 -122
+*-5.007395 492 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] sequential_multiplier_tb.
+[sst_width] 227
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 200
+@28
+sequential_multiplier_tb.dut.clk
+sequential_multiplier_tb.dut.start
+sequential_multiplier_tb.dut.done
+sequential_multiplier_tb.dut.rst
+@22
+sequential_multiplier_tb.dut.mcand_reg[3:0]
+@28
+sequential_multiplier_tb.dut.mplier_reg[3:0]
+sequential_multiplier_tb.dut.multiplier_serial_bit
+@29
+sequential_multiplier_tb.dut.product_temp[7:0]
+@22
+sequential_multiplier_tb.dut.product[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
