@@ -9,7 +9,7 @@ module sequential_multiplier #(
     input wire start,
     input wire [MULTIPLICAND_WIDTH-1:0] multiplicand,
     input wire [MULTIPLIER_WIDTH-1:0] multiplier,
-	input wire multiplier_serial_bit,  //serial input bit
+	input wire multiplier_serial_bit_in,  //serial input bit
     output reg [(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH)-1:0] product,
     output reg done
 );
@@ -26,6 +26,7 @@ module sequential_multiplier #(
     reg [MULTIPLIER_WIDTH-1:0] mplier_reg;
     reg [(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH)-1:0] product_temp;
     reg [$clog2(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH)-1:0] count;  // Counter for iterations
+	reg multiplier_serial_bit_reg;
 
     // State machine and sequential logic
     always @(posedge clk or posedge rst) begin
@@ -38,15 +39,18 @@ module sequential_multiplier #(
             product <= {(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH){1'b0}};
             count <= {$clog2(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH){1'b0}};
             done <= 1'b0;
+            multiplier_serial_bit_reg <= 1'b0;			
         end
         else begin
             state <= next_state;
+            multiplier_serial_bit_reg <= multiplier_serial_bit_in;			
             
             case (state)
                 IDLE: begin
                     if (start) begin
                         mcand_reg <= multiplicand;
                         mplier_reg <= multiplier;
+						// multiplier_serial_bit_reg <= multiplier_serial_bit_in;
                         product_temp <= {(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH){1'b0}};
                         product_out_temp <= {(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH){1'b0}};
                         count <= {$clog2(MULTIPLICAND_WIDTH+MULTIPLIER_WIDTH){1'b0}};
@@ -56,7 +60,7 @@ module sequential_multiplier #(
 
                 CALC: begin
                     // if (mplier_reg[0]) begin  //if bit is 1
-					if (multiplier_serial_bit) begin  //if bit is 1
+					if (multiplier_serial_bit_reg) begin  //if bit is 1
                         product_temp <= product_temp + (mcand_reg << count); //working
 						// product_temp[31:16] <= product_temp[31:16] + mcand_reg;  //adding mcand_reg to higher MSB of product						
                     end
@@ -83,7 +87,8 @@ module sequential_multiplier #(
             end
             
             CALC: begin
-                next_state = (count == MULTIPLICAND_WIDTH) ? FINISH : CALC;
+                next_state = (count == (MULTIPLICAND_WIDTH - 1)) ? FINISH : CALC;
+                // next_state = (count == (MULTIPLICAND_WIDTH)) ? FINISH : CALC;				
             end
             
             FINISH: begin
