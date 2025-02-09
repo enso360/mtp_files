@@ -1,6 +1,6 @@
 // bit serial mult
 
-module sequential_multiplier #(
+module bitserial_multiplier #(
     parameter MULTIPLICAND_WIDTH = 16,
     parameter MULTIPLIER_WIDTH = 16
 ) (
@@ -59,15 +59,16 @@ module sequential_multiplier #(
                 end
 
                 CALC: begin
-                    // if (mplier_reg[0]) begin  //if bit is 1
-					if (multiplier_serial_bit_reg) begin  //if bit is 1
-                        product_temp <= product_temp + (mcand_reg << count); //working
-						// product_temp[31:16] <= product_temp[31:16] + mcand_reg;  //adding mcand_reg to higher MSB of product						
-                    end
-                    
-					// product_temp <= product_temp >> 1; //todo: all 0s
-                    // mplier_reg <= mplier_reg >> 1;
-                    count <= count + 1;
+					if (count <= (MULTIPLICAND_WIDTH-1) ) begin 
+						// if (mplier_reg[0]) begin  //if bit is 1
+						if (multiplier_serial_bit_reg) begin  //if bit is 1
+							product_temp <= product_temp + (mcand_reg << count); //working
+							// product_temp[31:16] <= product_temp[31:16] + mcand_reg;  //adding mcand_reg to higher MSB of product						
+						end
+					
+						// product_temp <= product_temp >> 1; //todo: all 0s
+						count <= count + 1;
+					end
                 end
 
                 FINISH: begin
@@ -87,8 +88,7 @@ module sequential_multiplier #(
             end
             
             CALC: begin
-                next_state = (count == (MULTIPLICAND_WIDTH - 1)) ? FINISH : CALC;
-                // next_state = (count == (MULTIPLICAND_WIDTH)) ? FINISH : CALC;				
+                next_state = (count == (MULTIPLICAND_WIDTH - 1)) ? FINISH : CALC;				
             end
             
             FINISH: begin

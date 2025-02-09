@@ -1,5 +1,5 @@
-// Testbench
-module sequential_multiplier_tb;
+// bit serial mult Testbench
+module bitserial_multiplier_tb;
     reg clk;
     reg rst;
     reg start;
@@ -14,7 +14,7 @@ module sequential_multiplier_tb;
     wire done;
 
     // Instantiate the multiplier with parameterized widths
-    sequential_multiplier #(
+    bitserial_multiplier #(
         // .MULTIPLICAND_WIDTH(16),
         // .MULTIPLIER_WIDTH(16)
 		.MULTIPLICAND_WIDTH(4),
