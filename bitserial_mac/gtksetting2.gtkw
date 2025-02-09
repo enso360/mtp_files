@@ -1,0 +1,117 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Feb 09 19:31:35 2025
+[*]
+[dumpfile] "E:\Karan\Github_repos\mtp_files\bitserial_mac\mac_waveforms.vcd"
+[dumpfile_mtime] "Sun Feb 09 19:17:33 2025"
+[dumpfile_size] 3272
+[savefile] "E:\Karan\Github_repos\mtp_files\bitserial_mac\gtksetting2.gtkw"
+[timestart] 0
+[size] 1280 729
+[pos] -87 -87
+*-5.834311 282 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] sequential_mac_tb.
+[treeopen] sequential_mac_tb.dut.
+[sst_width] 211
+[signals_width] 254
+[sst_expanded] 1
+[sst_vpaned_height] 200
+@28
+sequential_mac_tb.dut.clk
+sequential_mac_tb.dut.rst
+sequential_mac_tb.dut.clear_acc
+sequential_mac_tb.dut.start
+sequential_mac_tb.dut.mult_start
+@c00022
+sequential_mac_tb.dut.multiplicand[3:0]
+@28
+(0)sequential_mac_tb.dut.multiplicand[3:0]
+(1)sequential_mac_tb.dut.multiplicand[3:0]
+(2)sequential_mac_tb.dut.multiplicand[3:0]
+(3)sequential_mac_tb.dut.multiplicand[3:0]
+@1401200
+-group_end
+@22
+sequential_mac_tb.dut.multiplier[3:0]
+@28
+sequential_mac_tb.dut.multiplier_serial_bit_in
+@c00025
+sequential_mac_tb.dut.mult_inst.count[2:0]
+@28
+(0)sequential_mac_tb.dut.mult_inst.count[2:0]
+(1)sequential_mac_tb.dut.mult_inst.count[2:0]
+(2)sequential_mac_tb.dut.mult_inst.count[2:0]
+@1401201
+-group_end
+@c00022
+sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+@28
+(0)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(1)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(2)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(3)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(4)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(5)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(6)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+(7)sequential_mac_tb.dut.mult_inst.product_temp[7:0]
+@1401200
+-group_end
+@22
+sequential_mac_tb.dut.mult_inst.product[7:0]
+@c00022
+sequential_mac_tb.dut.mult_result[7:0]
+@28
+(0)sequential_mac_tb.dut.mult_result[7:0]
+(1)sequential_mac_tb.dut.mult_result[7:0]
+(2)sequential_mac_tb.dut.mult_result[7:0]
+(3)sequential_mac_tb.dut.mult_result[7:0]
+(4)sequential_mac_tb.dut.mult_result[7:0]
+(5)sequential_mac_tb.dut.mult_result[7:0]
+(6)sequential_mac_tb.dut.mult_result[7:0]
+(7)sequential_mac_tb.dut.mult_result[7:0]
+@1401200
+-group_end
+@c00022
+sequential_mac_tb.dut.accumulator[7:0]
+@28
+(0)sequential_mac_tb.dut.accumulator[7:0]
+(1)sequential_mac_tb.dut.accumulator[7:0]
+(2)sequential_mac_tb.dut.accumulator[7:0]
+(3)sequential_mac_tb.dut.accumulator[7:0]
+(4)sequential_mac_tb.dut.accumulator[7:0]
+(5)sequential_mac_tb.dut.accumulator[7:0]
+(6)sequential_mac_tb.dut.accumulator[7:0]
+(7)sequential_mac_tb.dut.accumulator[7:0]
+@1401200
+-group_end
+@c00022
+sequential_mac_tb.dut.mac_result[7:0]
+@28
+(0)sequential_mac_tb.dut.mac_result[7:0]
+(1)sequential_mac_tb.dut.mac_result[7:0]
+(2)sequential_mac_tb.dut.mac_result[7:0]
+(3)sequential_mac_tb.dut.mac_result[7:0]
+(4)sequential_mac_tb.dut.mac_result[7:0]
+(5)sequential_mac_tb.dut.mac_result[7:0]
+(6)sequential_mac_tb.dut.mac_result[7:0]
+(7)sequential_mac_tb.dut.mac_result[7:0]
+@1401200
+-group_end
+@28
+sequential_mac_tb.dut.done
+@c00028
+sequential_mac_tb.dut.next_state[1:0]
+@28
+(0)sequential_mac_tb.dut.next_state[1:0]
+(1)sequential_mac_tb.dut.next_state[1:0]
+@1401200
+-group_end
+@c00028
+sequential_mac_tb.dut.state[1:0]
+@28
+(0)sequential_mac_tb.dut.state[1:0]
+(1)sequential_mac_tb.dut.state[1:0]
+@1401200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
