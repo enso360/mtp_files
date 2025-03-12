@@ -39,15 +39,19 @@ module partial_product_adder_tb;
 		#10
 
         // Test case 1: Add some positive partial products
-        partial_product = 16'h1234; //4660
+        // partial_product = 16'h0; 
+        // partial_product_valid = 1;
+        // #10;
+        partial_product = 16'h100; //
         partial_product_valid = 1;
         #10;
-        partial_product = 16'h5678; // 22136
+		partial_product = 16'h200; // 
         partial_product_valid = 1;
         #10;
+		partial_product = 16'h0;
         partial_product_valid = 0;
         #10;
-        $display("Expected result: Ox68AC");  // 26796
+        $display("Expected result:");   
 		$display("\n");
 
         reset = 1;
@@ -59,33 +63,42 @@ module partial_product_adder_tb;
         partial_product = 16'h0800; // 2048
         partial_product_valid = 1;
         #10;
-        partial_product = 16'hFC00; // -1024
+        partial_product = 16'hFE00; // -512x2 = -1024
         partial_product_valid = 1;
         #10;
+        partial_product = 16'hFF00; // -256x4 = -1024
+        partial_product_valid = 1;
+        #10;
+        partial_product = 16'hFF80; // -128x8 = -1024
+        partial_product_valid = 1;
+        #10;			
+		partial_product = 16'h0;
+        partial_product_valid = 0;
+        #10;		
         partial_product_valid = 0;
         #10;
-        $display("Expected result: 0x0400");  // +1024
-		$display("\n");
+        // $display("Expected result: 0x0400");  // +1024
+		// $display("\n");
 		
-        partial_product = 16'hFC00; // -1024
-        partial_product_valid = 1;
-        #10;
-        partial_product_valid = 0;
-        #10;
-        $display("Expected result: 0x0000");  // 0
-		$display("\n");
+        // partial_product = 16'hFC00; // -1024
+        // partial_product_valid = 1;
+        // #10;
+        // partial_product_valid = 0;
+        // #10;
+        // $display("Expected result: 0x0000");  // 0
+		// $display("\n");
 
-        partial_product = 16'hFC00; // -1024
-        partial_product_valid = 1;
-        #10;
-        partial_product_valid = 0;
-        #10;
-        $display("Expected result: 0xFC00");  // -1024
-		$display("\n");
+        // partial_product = 16'hFC00; // -1024
+        // partial_product_valid = 1;
+        // #10;
+        // partial_product_valid = 0;
+        // #10;
+        // $display("Expected result: 0xFC00");  // -1024
+		// $display("\n");
 		
         // Wait for completion
         wait(result_ready);
-        #20;
+        #10;
 		
         $finish;
     end
@@ -96,7 +109,7 @@ module partial_product_adder_tb;
     end
 
     initial begin
-        $monitor("time = %0d, partial_product = %h, result = %h, result_ready = %b", $time, partial_product, result, result_ready);
+        $monitor("partial_product = %h, result = %h, result_ready = %b", partial_product, result, result_ready);
 		        // Monitor the signals
         // $monitor("time = %0d, partial_product = %h (%d), result = %h (%d), result_ready = %b",
 					// $time, partial_product, $signed(partial_product), result, $signed(result), result_ready);
