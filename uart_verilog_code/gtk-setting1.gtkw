@@ -1,0 +1,28 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Mar 24 21:14:10 2025
+[*]
+[dumpfile] "E:\Karan\OneDrive - Indian Institute of Technology Bombay\EE_SEM4\EE712_ESD\course_project\code\uart_verilog_code\tx_BRG_waveform.vcd"
+[dumpfile_mtime] "Mon Mar 24 21:11:32 2025"
+[dumpfile_size] 204712
+[savefile] "E:\Karan\OneDrive - Indian Institute of Technology Bombay\EE_SEM4\EE712_ESD\course_project\code\uart_verilog_code\gtk-setting1.gtkw"
+[timestart] 22912000
+[size] 1280 729
+[pos] -113 -113
+*-18.788416 42395000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tx_BRG_tb.
+[sst_width] 211
+[signals_width] 220
+[sst_expanded] 1
+[sst_vpaned_height] 200
+@28
+tx_BRG_tb.rst
+tx_BRG_tb.clk
+@24
+tx_BRG_tb.dut.counter[15:0]
+@28
+tx_BRG_tb.baud_tick
+@24
+tx_BRG_tb.baud_tick_count[15:0]
+[pattern_trace] 1
+[pattern_trace] 0
