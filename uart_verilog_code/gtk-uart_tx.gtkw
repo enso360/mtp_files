@@ -1,0 +1,60 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Mar 27 20:40:14 2025
+[*]
+[dumpfile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\uart_transmitter_tb.vcd"
+[dumpfile_mtime] "Thu Mar 27 20:38:27 2025"
+[dumpfile_size] 292380
+[savefile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\gtk-uart_tx.gtkw"
+[timestart] 8662500
+[size] 1280 729
+[pos] -1 -1
+*-15.000000 8714700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] uart_transmitter_tb.
+[treeopen] uart_transmitter_tb.dut.
+[sst_width] 211
+[signals_width] 210
+[sst_expanded] 1
+[sst_vpaned_height] 259
+@25
+uart_transmitter_tb.dut.tx_BRG_dut.counter[15:0]
+@28
+uart_transmitter_tb.clk
+uart_transmitter_tb.rst
+uart_transmitter_tb.dut.baud_tick
+uart_transmitter_tb.dut.tx_ready
+uart_transmitter_tb.dut.tx_valid
+@22
+uart_transmitter_tb.dut.tx_data[7:0]
+uart_transmitter_tb.expected_frame[9:0]
+@800022
+uart_transmitter_tb.dut.shift_reg[7:0]
+@c00028
+uart_transmitter_tb.dut.shift_reg[7:0]
+@28
+(0)uart_transmitter_tb.dut.shift_reg[7:0]
+(1)uart_transmitter_tb.dut.shift_reg[7:0]
+(2)uart_transmitter_tb.dut.shift_reg[7:0]
+(3)uart_transmitter_tb.dut.shift_reg[7:0]
+(4)uart_transmitter_tb.dut.shift_reg[7:0]
+(5)uart_transmitter_tb.dut.shift_reg[7:0]
+(6)uart_transmitter_tb.dut.shift_reg[7:0]
+(7)uart_transmitter_tb.dut.shift_reg[7:0]
+@22
+uart_transmitter_tb.dut.shift_reg[7:0]
+@1401200
+-group_end
+@28
+[color] 3
+(7)uart_transmitter_tb.dut.shift_reg[7:0]
+@1001200
+-group_end
+@28
+[color] 5
+uart_transmitter_tb.dut.tx_pin
+uart_transmitter_tb.frame_received
+uart_transmitter_tb.dut.bit_count[2:0]
+[color] 6
+uart_transmitter_tb.dut.state[2:0]
+[pattern_trace] 1
+[pattern_trace] 0
