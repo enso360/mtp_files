@@ -1,0 +1,72 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Mar 29 17:04:35 2025
+[*]
+[dumpfile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\baud_rate_generator_waveform.vcd"
+[dumpfile_mtime] "Sat Mar 29 17:01:00 2025"
+[dumpfile_size] 727487
+[savefile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\gtk-BRG.gtkw"
+[timestart] 266263000
+[size] 1280 729
+[pos] -1 -1
+*-19.781754 267850000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] baud_rate_generator_tb.
+[sst_width] 211
+[signals_width] 326
+[sst_expanded] 1
+[sst_vpaned_height] 200
+@28
+baud_rate_generator_tb.clk
+baud_rate_generator_tb.rst
+baud_rate_generator_tb.dut.tx_baud_tick
+@24
+baud_rate_generator_tb.dut.tx_tick_counter[15:0]
+@c00420
+baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+@28
+(0)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(1)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(2)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(3)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(4)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(5)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(6)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(7)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(8)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(9)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(10)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(11)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(12)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(13)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(14)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(15)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(16)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(17)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(18)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(19)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(20)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(21)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(22)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(23)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(24)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(25)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(26)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(27)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(28)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(29)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(30)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+(31)baud_rate_generator_tb.dut.TX_BRG_COUNTER_MAX
+@1401200
+-group_end
+@28
+baud_rate_generator_tb.dut.rx_baud_tick
+@24
+baud_rate_generator_tb.dut.rx_tick_counter[15:0]
+@420
+baud_rate_generator_tb.dut.RX_BRG_COUNTER_MAX
+baud_rate_generator_tb.dut.BAUD_RATE
+baud_rate_generator_tb.dut.BAUD_RATE_16x
+baud_rate_generator_tb.dut.CLOCK_FREQ
+baud_rate_generator_tb.CLOCK_PERIOD
+[pattern_trace] 1
+[pattern_trace] 0
