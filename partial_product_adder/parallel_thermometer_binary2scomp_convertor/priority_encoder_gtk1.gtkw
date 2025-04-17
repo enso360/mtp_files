@@ -1,0 +1,44 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed Apr 16 11:40:39 2025
+[*]
+[dumpfile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\priority_encoder_waveform.vcd"
+[dumpfile_mtime] "Wed Apr 16 11:35:09 2025"
+[dumpfile_size] 2437
+[savefile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\priority_encoder_gtk1.gtkw"
+[timestart] 75610
+[size] 1920 1009
+[pos] -1 -1
+*-13.669914 122000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] priority_encoder_tb.
+[sst_width] 211
+[signals_width] 366
+[sst_expanded] 1
+[sst_vpaned_height] 443
+@28
+[color] 1
+priority_encoder_tb.clear
+@22
+priority_encoder_tb.data_in[63:0]
+@28
+priority_encoder_tb.data_in[63:0]
+[color] 1
+priority_encoder_tb.valid
+@22
+priority_encoder_tb.data_out[5:0]
+@28
+priority_encoder_tb.data_out[5:0]
+@22
+[color] 5
+priority_encoder_tb.signed_out[6:0]
+@420
+priority_encoder_tb.signed_out[6:0]
+@29
+[color] 7
+priority_encoder_tb.uut.signed_thermometer_to_binary_data_out[6:0]
+@420
+priority_encoder_tb.uut.signed_thermometer_to_binary_data_out[6:0]
+priority_encoder_tb.WIDTH
+priority_encoder_tb.LOG_WIDTH
+[pattern_trace] 1
+[pattern_trace] 0
