@@ -47,15 +47,18 @@ module uart_receiver #(
             rx_error <= 1'b0;
         end else begin
             // Default - maintain current signals
-            rx_ready <= 1'b0;  // Pulse rx_ready for only one clock cycle //todo
+            //rx_ready <= 1'b0;  // Pulse rx_ready for only one clock cycle //todo
             
             case (state)
                 IDLE: begin
+					rx_ready <= 1'b1;  // Rx is ready for next tx
+					sample_counter <= 0;
                     // Wait for start bit (high-to-low transition)
                     if (rx_sync2 == 1'b0) begin
                         // Start bit detected, begin sampling
                         state <= START_BIT;
-                        sample_counter <= 0;
+                        //sample_counter <= 0;
+						rx_ready <= 1'b0;  //rx is busy now
                     end
                 end
                 
@@ -76,6 +79,7 @@ module uart_receiver #(
                             state <= DATA_BITS_S;
                             sample_counter <= 0;
                             bit_counter <= 0;
+							rx_shift_reg <= 0;  //reset rx buffer for new data
                         end
                     end
                 end
@@ -114,12 +118,14 @@ module uart_receiver #(
                             rx_error <= (rx_sync2 != 1'b1);
                             
                             // Capture the data regardless of framing error
-                            rx_data <= rx_shift_reg;  //SIPO
-                            rx_ready <= 1'b1;  // Data is ready
+                            rx_data <= rx_shift_reg;  //SIPO  
+							//rx_ready <= 1'b1;  // Rx is ready for next tx
                         end
                         // End of stop bit
                         else if (sample_counter == 15) begin
                             // state <= CLEANUP;  //todo
+							rx_ready <= 1'b1;  // Rx is ready for next tx
+							//rx_data <= rx_shift_reg;  //SIPO 
 							state <= IDLE;  //todo
                             sample_counter <= 0;
                         end
