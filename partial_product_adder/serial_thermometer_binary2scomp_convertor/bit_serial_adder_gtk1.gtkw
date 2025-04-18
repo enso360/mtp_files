@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Apr 18 20:26:32 2025
+[*]
+[dumpfile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\serial_thermometer_binary2scomp_convertor\bit_serial_adder_tb.vcd"
+[dumpfile_mtime] "Fri Apr 18 20:26:06 2025"
+[dumpfile_size] 2032
+[savefile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\serial_thermometer_binary2scomp_convertor\bit_serial_adder_gtk1.gtkw"
+[timestart] 0
+[size] 1280 729
+[pos] -1 -1
+*-15.668908 138500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] bit_serial_adder_tb.
+[sst_width] 211
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 200
+@28
+bit_serial_adder_tb.clk
+bit_serial_adder_tb.rst
+[color] 3
+bit_serial_adder_tb.start
+@22
+bit_serial_adder_tb.dut.bit_counter[3:0]
+@28
+[color] 3
+bit_serial_adder_tb.serial_in
+@23
+[color] 5
+bit_serial_adder_tb.dut.sum[3:0]
+@22
+[color] 5
+bit_serial_adder_tb.dut.parallel_sum_out[3:0]
+@28
+bit_serial_adder_tb.dut.valid
+[color] 7
+bit_serial_adder_tb.dut.state[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
