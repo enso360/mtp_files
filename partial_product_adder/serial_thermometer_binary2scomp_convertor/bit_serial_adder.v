@@ -1,6 +1,6 @@
 
 module bit_serial_adder #(
-    parameter SERIAL_INPUT_LENGTH = 6  // length of input bit sequence of thermometer code
+    parameter SERIAL_INPUT_LENGTH = 32  // length of input bit sequence of thermometer code
 )(
     input wire clk,           
     input wire rst,           // Active high reset
@@ -50,7 +50,9 @@ module bit_serial_adder #(
                     // If serial_in_reg is 1, increment sum by 1
                     if (serial_in_reg) begin
                         sum <= sum + 1;
-                    end
+                    end else begin 
+						//
+					end
                     bit_counter <= bit_counter + 1;
                 end
                 DONE: begin
