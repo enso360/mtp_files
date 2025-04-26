@@ -1,9 +1,9 @@
 module uart_transmitter #(
-    parameter CLOCK_FREQ = 50_000_000,
-    parameter BAUD_RATE = 9600
+	parameter DATA_BITS = 8    // Number of data bits
 )(
     input  wire        clk,
     input  wire        rst,
+    input  wire        tx_baud_tick,
     input  wire [7:0]  tx_data,
     input  wire        tx_valid,
     output reg         tx_ready,
@@ -16,20 +16,9 @@ module uart_transmitter #(
     localparam STOP     = 3'b011;
 
     // Internal signals
-    wire        tx_baud_tick;
     reg [2:0]   state;
     reg [2:0]   bit_count;
     reg [7:0]   shift_reg;
-
-    // Instantiate Baud Rate Generator
-    baud_rate_generator #(
-        .CLOCK_FREQ(CLOCK_FREQ),
-        .BAUD_RATE(BAUD_RATE)
-    ) baud_rate_generator_dut (
-        .clk(clk),
-        .rst(rst),
-        .tx_baud_tick(tx_baud_tick)
-    );
 
     // UART Transmitter State Machine
     always @(posedge clk or posedge rst) begin
@@ -40,7 +29,7 @@ module uart_transmitter #(
             bit_count <= 3'b0;
             shift_reg <= 8'b0;
         end 
-		else if (tx_baud_tick) begin
+        else if (tx_baud_tick) begin
             case (state)
                 IDLE: begin
                     tx_pin <= 1'b1;  // Maintain high in idle
@@ -56,7 +45,7 @@ module uart_transmitter #(
                     state <= DATA;
                     bit_count <= 3'b0;
                     tx_pin <= shift_reg[0];  // Transmit/copy LSB first (in next state)
-					shift_reg <= {1'b0, shift_reg[7:1]};  // Right shift (in next state)
+                    shift_reg <= {1'b0, shift_reg[7:1]};  // Right shift (in next state)
                 end
 
                 DATA: begin
@@ -81,4 +70,3 @@ module uart_transmitter #(
         end
     end
 endmodule
-

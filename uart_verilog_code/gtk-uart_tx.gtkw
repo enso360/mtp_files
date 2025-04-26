@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Apr 26 11:08:14 2025
+[*] Sat Apr 26 11:39:30 2025
 [*]
 [dumpfile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\uart_transmitter_tb.vcd"
-[dumpfile_mtime] "Sat Apr 26 11:07:35 2025"
-[dumpfile_size] 79595
+[dumpfile_mtime] "Sat Apr 26 11:37:31 2025"
+[dumpfile_size] 762235
 [savefile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\gtk-uart_tx.gtkw"
-[timestart] 14930000
+[timestart] 0
 [size] 1280 729
-[pos] -139 -122
-*-22.000000 26820000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -35 -35
+*-25.000000 49400000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] uart_transmitter_tb.
 [treeopen] uart_transmitter_tb.dut.
 [sst_width] 211
@@ -27,7 +27,7 @@ uart_transmitter_tb.dut.tx_valid
 uart_transmitter_tb.dut.tx_data[7:0]
 @28
 uart_transmitter_tb.tx_data[7:0]
-@c00023
+@c00022
 [color] 3
 uart_transmitter_tb.dut.shift_reg[7:0]
 @c00028
@@ -48,7 +48,7 @@ uart_transmitter_tb.dut.shift_reg[7:0]
 @28
 [color] 3
 (7)uart_transmitter_tb.dut.shift_reg[7:0]
-@1401201
+@1401200
 -group_end
 @28
 [color] 5
@@ -57,7 +57,7 @@ uart_transmitter_tb.dut.tx_pin
 uart_transmitter_tb.dut.tx_ready
 @24
 uart_transmitter_tb.dut.bit_count[2:0]
-@c02028
+@c02029
 [color] 6
 ^1 E:\Karan\Github_repos\mtp_files\uart_verilog_code\uart_transmitter_tb_filter.gtkw
 uart_transmitter_tb.dut.state[2:0]
@@ -68,7 +68,7 @@ uart_transmitter_tb.dut.state[2:0]
 (1)uart_transmitter_tb.dut.state[2:0]
 [color] 6
 (2)uart_transmitter_tb.dut.state[2:0]
-@1401200
+@1401201
 -group_end
 [pattern_trace] 1
 [pattern_trace] 0
