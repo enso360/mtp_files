@@ -1,33 +1,56 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Apr 26 11:56:19 2025
+[*] Sat Apr 26 13:10:42 2025
 [*]
 [dumpfile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\uart_loopback_tb.vcd"
-[dumpfile_mtime] "Sat Apr 26 11:50:14 2025"
-[dumpfile_size] 1054877
+[dumpfile_mtime] "Sat Apr 26 13:00:14 2025"
+[dumpfile_size] 1054981
 [savefile] "E:\Karan\Github_repos\mtp_files\uart_verilog_code\uart_loopback_tb-gtk.gtkw"
-[timestart] 303200000
+[timestart] 0
 [size] 1280 729
-[pos] -35 -35
-*-24.311874 382800000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-25.472610 100100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] uart_loopback_tb.
 [sst_width] 211
-[signals_width] 177
+[signals_width] 226
 [sst_expanded] 1
-[sst_vpaned_height] 200
+[sst_vpaned_height] 259
 @28
 uart_loopback_tb.rst
 uart_loopback_tb.clk
+@24
+uart_loopback_tb.uart_tx.bit_count[2:0]
+@28
+uart_loopback_tb.uart_tx.tx_baud_tick
 uart_loopback_tb.tx_valid
 @22
+[color] 2
 uart_loopback_tb.tx_data[7:0]
-@29
+uart_loopback_tb.uart_tx.shift_reg[7:0]
+@28
 uart_loopback_tb.tx_ready
+[color] 2
+uart_loopback_tb.uart_tx.tx_pin
+@29
+[color] 5
+uart_loopback_tb.uart_rx.rx_in
 @22
+uart_loopback_tb.uart_rx.sample_counter[3:0]
+uart_loopback_tb.uart_rx.rx_shift_reg[7:0]
+@23
+[color] 5
 uart_loopback_tb.rx_data[7:0]
+@22
+[color] 2
+uart_loopback_tb.expected_data[7:0]
 @28
 uart_loopback_tb.rx_ready
+@24
+uart_loopback_tb.uart_rx.bit_counter[3:0]
+@28
+[color] 7
 uart_loopback_tb.uart_tx.state[2:0]
+[color] 7
 uart_loopback_tb.uart_rx.state[2:0]
 [pattern_trace] 1
 [pattern_trace] 0
