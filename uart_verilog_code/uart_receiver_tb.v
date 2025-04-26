@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module uart_receiver_simple_tb();
+module uart_receiver_tb();
     // Parameters
 	parameter CLOCK_FREQ = 50_000_000;
     parameter CLK_PERIOD = 20;  // 50 MHz clock (20ns)
@@ -74,7 +74,7 @@ module uart_receiver_simple_tb();
     // Dump waveforms
     initial begin
         $dumpfile("uart_receiver_tb.vcd");
-        $dumpvars(0, uart_receiver_simple_tb);
+        $dumpvars(0, uart_receiver_tb);
     end
     
     // Monitor key signals
@@ -101,6 +101,19 @@ module uart_receiver_simple_tb();
         // Wait for reception
         wait(rx_ready);  //todo
         if (rx_data === 8'hA5)
+            $display("Test 1 PASSED: Received 0x%h \n", rx_data);
+        else
+            $display("Test 1 FAILED: Received 0x%h \n", rx_data);
+        
+        #(BIT_PERIOD * 1);
+
+        // Test case 1: Send byte 0xB4
+        $display("Test 1: Sending byte 0xB4 \n");
+        send_uart_byte(8'hB4);
+        
+        // Wait for reception
+        wait(rx_ready);  //todo
+        if (rx_data === 8'hB4)
             $display("Test 1 PASSED: Received 0x%h \n", rx_data);
         else
             $display("Test 1 FAILED: Received 0x%h \n", rx_data);

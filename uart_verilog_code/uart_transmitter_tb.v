@@ -101,7 +101,7 @@ module uart_transmitter_tb();
 		wait(tx_ready);  //wait for tx ready 
 
         // Test Case 2: 
-        tx_data = 8'h55;
+        tx_data = 8'hB4;
         tx_valid = 1;
         // #(CLK_PERIOD*2);
 		wait(tx_ready==0); //assert tx_valid high until tx buffer starts trasnmitting

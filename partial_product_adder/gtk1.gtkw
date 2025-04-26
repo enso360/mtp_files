@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed Mar 12 10:16:42 2025
+[*] Wed Mar 26 12:28:19 2025
 [*]
 [dumpfile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\ppa_waveform.vcd"
-[dumpfile_mtime] "Wed Mar 12 10:16:00 2025"
-[dumpfile_size] 1684
+[dumpfile_mtime] "Wed Mar 26 12:27:34 2025"
+[dumpfile_size] 1810
 [savefile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\gtk1.gtkw"
 [timestart] 0
 [size] 1280 729
-[pos] -165 -122
-*-4.074137 95 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -113 -113
+*-5.419273 125 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] partial_product_adder_tb.
 [sst_width] 211
 [signals_width] 283
@@ -19,7 +19,7 @@
 partial_product_adder_tb.dut.clk
 partial_product_adder_tb.dut.reset
 partial_product_adder_tb.dut.partial_product_valid
-@22
+@421
 partial_product_adder_tb.dut.partial_product[15:0]
 partial_product_adder_tb.dut.accumulator[31:0]
 partial_product_adder_tb.dut.result[31:0]
