@@ -1,0 +1,60 @@
+# Vivado project files to ignore
+*.jou
+*.log
+*.str
+*.cache/
+*.webtalk/
+*.hw/
+*.ip_user_files/
+*.Xil/
+*.runs/
+*.sim/
+*.srcs/sources_1/bd/*/ip/
+*.srcs/sources_1/bd/*/ipshared/
+*.srcs/sources_1/bd/*/hdl/
+*.srcs/sources_1/imports/*
+*.srcs/sources_1/bd/*/ui/
+
+# Vivado database and temporary files
+*.wdb
+*.dcp
+*.data
+*.backup.*
+*.tmp
+*.tcl
+*.xml
+
+# Vivado generated output products
+*.xpr
+*.xpf
+*.sdk/
+*.sysdef
+*.bit
+*.bin
+*.mcs
+
+# Vivado HLS or Vitis
+hls_out/
+.vscode/
+.vitis/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User-generated simulation files
+*.vcd
+*.vpd
+*.pb
+
+# Optional: if using Pynq overlays or .hwh files
+*.hwh
+*.tcl
+
+# Ignore simulation/intermediate output files
+*.elf
+*.log
+*.jou
+*.wdb
+*.mem
+*.svf
