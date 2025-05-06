@@ -2,11 +2,9 @@
 
 module tb_thermometer_to_binary_2scomplement();
 
-    // Parameters
     parameter SERIAL_INPUT_LENGTH = 33;  // 32 bits + 1 sign bit
     parameter CLK_PERIOD = 10;           // Clock period in ns
     
-    // Testbench signals
     reg clk;
     reg rst;
     reg start;
@@ -15,7 +13,8 @@ module tb_thermometer_to_binary_2scomplement();
     wire [$clog2(SERIAL_INPUT_LENGTH - 1) - 1:0] thermometer_sum_out;
     wire [$clog2(SERIAL_INPUT_LENGTH - 1):0] thermometer_result_2scomp_out;
     
-    // Instantiate the DUT (Device Under Test)
+	reg TB_DONE = 0;
+	
     thermometer_to_binary_2scomplement #(
         .SERIAL_INPUT_LENGTH(SERIAL_INPUT_LENGTH)
     ) dut (
@@ -28,7 +27,6 @@ module tb_thermometer_to_binary_2scomplement();
         .thermometer_result_2scomp_out(thermometer_result_2scomp_out)
     );
     
-    // Clock generation
     always begin
         #(CLK_PERIOD/2) clk = ~clk;
     end
@@ -53,7 +51,7 @@ module tb_thermometer_to_binary_2scomplement();
 			#5;
 			
             // Send remaining bits one by one
-            for (i = 1; i < (SERIAL_INPUT_LENGTH - 1); i = i + 1) begin  //todo //hack
+            for (i = 1; i < (SERIAL_INPUT_LENGTH); i = i + 1) begin  //todo //hack
 				@(posedge clk);
                 serial_in = pattern[i];
             end
@@ -62,10 +60,8 @@ module tb_thermometer_to_binary_2scomplement();
 			#5;
 			serial_in = 0;  //diable serial input to prevent invalid computation  //todo
 			
-            // Wait for valid_out
             wait(valid_out); 
             
-            // Display results
             $display("Pattern %s complete: sum=%0d, result=%0d", 
                      pattern_name, thermometer_sum_out, $signed(thermometer_result_2scomp_out));
             
@@ -74,44 +70,46 @@ module tb_thermometer_to_binary_2scomplement();
         end
     endtask
     
-    // Main testbench
+
     initial begin
-        // Initialize testbench signals
+        
         clk = 0;
         rst = 1;
         start = 0;
         serial_in = 0;
         
-        // Apply reset
         #20 rst = 0;
         #20;
         
-        // // Test Pattern 1: Positive number with 5 ones
-        // // Sign bit (at LSB) = 0, 5 data bits = 1, rest = 0
-        // send_pattern(33'b00000000000000000000000000011111_0, "Positive 5");
-        // #20;
-        // Test Pattern 2: Negative number with 8 ones
-        // Sign bit (at LSB) = 1, 8 data bits = 1, rest = 0
-        send_pattern(33'b00000000000000000000000011111111_1, "Negative 8");
+        // Test Patterns: 
+
+        send_pattern(33'b00000000000000000000000000011111_0, "Positive 5");
+        #20;
+
+        send_pattern(33'b00000000000000000000000000011111_1, "Negative 5");
+        #20;
+
+        send_pattern(33'b01111111111111111111111111111111_0, "Max Positive");  //max is +31, not +32
+        #20;
+
+        send_pattern(33'b11111111111111111111111111111111_0, "Overflow");  //32 will overflow to 0
+        #20;
+
+        send_pattern(33'b11111111111111111111111111111111_1, "Max negative");  //-32
+        #20;
 		
-        #20;
-        // // Test Pattern 3: Zero (all zeros)
-        // // Sign bit (at LSB) = 0, all data bits = 0
-        // send_pattern(33'b00000000000000000000000000000000_0, "Zero");
-        // #20;
-        // Test Pattern 4: Maximum positive (all ones except sign bit)
-        // Sign bit (at LSB) = 0, all data bits = 1
-        send_pattern(33'b11111111111111111111111111111111_0, "Max Positive");  //todo
-        #20;
-        // Test Pattern 5: Alternating pattern
-        // Sign bit (at LSB) = 0, alternating data bits
-        send_pattern(33'b10101010101010101010101010101010_0, "Alternating");
+        send_pattern(33'b01111111111111111111111111111111_1, "Negative -31");
+        #20;		
+		
+        send_pattern(33'b10101010101010101010101010101010_0, "Alternating");  //+16
         #20;
 		
         send_pattern(33'b00000000000000000000000111111111_1, "Negative 9");
-		
         #20;		
-        // Finish simulation
+        
+		TB_DONE = 1; 
+		#50;
+		
         $display("Testbench completed");
         $finish;
     end
