@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_partial_product_adder_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_partial_product_adder" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="50115fs"></ZoomStartTime>
+      <ZoomEndTime time="159216fs"></ZoomEndTime>
+      <Cursor1Time time="143615fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="315"></NameColumnWidth>
+      <ValueColumnWidth column_width="172"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/tb_partial_product_adder/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/dut/count" type="array">
+      <obj_property name="ElementShortName">count[4:0]</obj_property>
+      <obj_property name="ObjectShortName">count[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/partial_product_valid" type="logic">
+      <obj_property name="ElementShortName">partial_product_valid</obj_property>
+      <obj_property name="ObjectShortName">partial_product_valid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/partial_product" type="array">
+      <obj_property name="ElementShortName">partial_product[15:0]</obj_property>
+      <obj_property name="ObjectShortName">partial_product[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/partial_product" type="array">
+      <obj_property name="ElementShortName">partial_product[15:0]</obj_property>
+      <obj_property name="ObjectShortName">partial_product[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/dut/count" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">count[4:0]</obj_property>
+      <obj_property name="ObjectShortName">count[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="label">count[4:0] (Left Shift Position)</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/dut/accumulator" type="array">
+      <obj_property name="ElementShortName">accumulator[31:0]</obj_property>
+      <obj_property name="ObjectShortName">accumulator[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/dut/accumulator" type="array">
+      <obj_property name="ElementShortName">accumulator[31:0]</obj_property>
+      <obj_property name="ObjectShortName">accumulator[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/result_ready" type="logic">
+      <obj_property name="ElementShortName">result_ready</obj_property>
+      <obj_property name="ObjectShortName">result_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/result" type="array">
+      <obj_property name="ElementShortName">result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">result[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/result" type="array">
+      <obj_property name="ElementShortName">result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">result[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/overflow" type="logic">
+      <obj_property name="ElementShortName">overflow</obj_property>
+      <obj_property name="ObjectShortName">overflow</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_partial_product_adder/DATA_WIDTH" type="array">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
