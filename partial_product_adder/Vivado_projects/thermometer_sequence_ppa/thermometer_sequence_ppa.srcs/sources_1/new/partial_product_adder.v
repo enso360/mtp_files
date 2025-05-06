@@ -24,7 +24,7 @@ module partial_product_adder #(
     parameter DATA_WIDTH = 6
 )(
     input clk,
-    input reset,
+    input clear,
     input signed [DATA_WIDTH-1:0] partial_product,
     input partial_product_valid,
     output reg signed [DATA_WIDTH + DATA_WIDTH - 1:0] result,
@@ -36,8 +36,8 @@ module partial_product_adder #(
 reg signed [DATA_WIDTH + DATA_WIDTH-1:0] accumulator;
 reg [$clog2(DATA_WIDTH+DATA_WIDTH)-1:0] count;  // Counter for iterations
 
-always @(posedge clk or posedge reset) begin
-    if (reset) begin
+always @(posedge clk or posedge clear) begin
+    if (clear) begin
         accumulator <= {(DATA_WIDTH + DATA_WIDTH){1'b0}};
         result <= {(DATA_WIDTH + DATA_WIDTH){1'b0}};
         result_ready <= 1'b0;
