@@ -83,29 +83,41 @@ module tb_thermometer_to_binary_2scomplement();
         
         // Test Patterns: 
 
-        send_pattern(33'b00000000000000000000000000011111_0, "Positive 5");
+        // send_pattern(33'b00000000000000000000000000011111_0, "Positive 5");
+        // #20;
+
+        // send_pattern(33'b00000000000000000000000000011111_1, "Negative 5");
+        // #20;
+
+        // send_pattern(33'b01111111111111111111111111111111_0, "Max Positive");  //max is +31, not +32
+        // #20;
+
+        // send_pattern(33'b11111111111111111111111111111111_0, "Overflow");  //32 will overflow to 0
+        // #20;
+
+        // send_pattern(33'b11111111111111111111111111111111_1, "Max negative");  //-32
+        // #20;
+		
+        // send_pattern(33'b01111111111111111111111111111111_1, "Negative -31");
+        // #20;		
+		
+        // send_pattern(33'b10101010101010101010101010101010_0, "Alternating");  //+16
+        // #20;
+		
+        // send_pattern(33'b00000000000000000000000111111111_1, "Negative 9");
+        // #20;		
+
+        send_pattern(33'b00000000000000000000000000001111_0, "Positive 4");  //+4   			//running sum = 4
         #20;
 
-        send_pattern(33'b00000000000000000000000000011111_1, "Negative 5");
+        send_pattern(33'b00000000000000000000000000000111_0, "Positive 3");  //+3 * 2 = +6     //running sum = 10
         #20;
 
-        send_pattern(33'b01111111111111111111111111111111_0, "Max Positive");  //max is +31, not +32
-        #20;
-
-        send_pattern(33'b11111111111111111111111111111111_0, "Overflow");  //32 will overflow to 0
-        #20;
-
-        send_pattern(33'b11111111111111111111111111111111_1, "Max negative");  //-32
+        send_pattern(33'b00000000000000000000000000000011_0, "Positive 2");  //+2 * 4 = +8     //running sum = 18
         #20;
 		
-        send_pattern(33'b01111111111111111111111111111111_1, "Negative -31");
-        #20;		
-		
-        send_pattern(33'b10101010101010101010101010101010_0, "Alternating");  //+16
-        #20;
-		
-        send_pattern(33'b00000000000000000000000111111111_1, "Negative 9");
-        #20;		
+        send_pattern(33'b01111111111111111111111111111111_1, "Negative 1");  //-1 * 8 = -8	   //running sum = 10
+        #20;	
         
 		TB_DONE = 1; 
 		#50;

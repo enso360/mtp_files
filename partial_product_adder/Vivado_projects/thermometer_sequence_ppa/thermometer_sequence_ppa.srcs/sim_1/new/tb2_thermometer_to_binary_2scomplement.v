@@ -1,12 +1,10 @@
 `timescale 1ns / 1ps
 
 module tb2_thermometer_to_binary_2scomplement();
-
     parameter SERIAL_INPUT_LENGTH = 33;  // 32 bits + 1 sign bit
     parameter DATA_WIDTH = 6;           // Width for partial product adder
     parameter CLK_PERIOD = 10;          // Clock period in ns
     
-    // Common signals
     reg clk;
     reg rst;
     
@@ -22,9 +20,7 @@ module tb2_thermometer_to_binary_2scomplement();
     reg pp_valid;
     wire [DATA_WIDTH + DATA_WIDTH - 1:0] pp_result;
     wire pp_ready;
-    wire pp_overflow;
-	
-	
+    wire pp_overflow;	
 	reg TB_DONE = 0;
 	
     // Instantiate thermometer_to_binary_2scomplement module
@@ -115,8 +111,7 @@ module tb2_thermometer_to_binary_2scomplement();
         #20;
         
         // Test Patterns: 
-
-        send_pattern(33'b00000000000000000000000000001111_0, "Positive 4");  //+4   //running sum = 4
+        send_pattern(33'b00000000000000000000000000001111_0, "Positive 4");  //+4   			//running sum = 4
 		wait(thermo_valid_out);
 		@(posedge clk);
 		pp_valid = 1;
