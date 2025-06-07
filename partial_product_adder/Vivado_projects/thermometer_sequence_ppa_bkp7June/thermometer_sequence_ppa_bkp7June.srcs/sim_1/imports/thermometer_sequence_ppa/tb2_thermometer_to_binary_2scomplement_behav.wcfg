@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb2_thermometer_to_binary_2scomplement_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb2_thermometer_to_binary_2scomplement" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2855001fs"></ZoomEndTime>
+      <Cursor1Time time="2489801fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="378"></NameColumnWidth>
+      <ValueColumnWidth column_width="154"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="8" />
+   <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="group440" type="group">
+      <obj_property name="label">thermo2binary</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_start" type="logic">
+         <obj_property name="ElementShortName">thermo_start</obj_property>
+         <obj_property name="ObjectShortName">thermo_start</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_serial_in" type="logic">
+         <obj_property name="ElementShortName">thermo_serial_in</obj_property>
+         <obj_property name="ObjectShortName">thermo_serial_in</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/sign_bit_reg" type="logic">
+         <obj_property name="ElementShortName">sign_bit_reg</obj_property>
+         <obj_property name="ObjectShortName">sign_bit_reg</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermometer_sum_out" type="array">
+         <obj_property name="ElementShortName">thermometer_sum_out[4:0]</obj_property>
+         <obj_property name="ObjectShortName">thermometer_sum_out[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermometer_sum_out" type="array">
+         <obj_property name="ElementShortName">thermometer_sum_out[4:0]</obj_property>
+         <obj_property name="ObjectShortName">thermometer_sum_out[4:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermometer_result_2scomp_out" type="array">
+         <obj_property name="ElementShortName">thermometer_result_2scomp_out[5:0]</obj_property>
+         <obj_property name="ObjectShortName">thermometer_result_2scomp_out[5:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermometer_result_2scomp_out" type="array">
+         <obj_property name="ElementShortName">thermometer_result_2scomp_out[5:0]</obj_property>
+         <obj_property name="ObjectShortName">thermometer_result_2scomp_out[5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermometer_result_2scomp_out" type="array">
+         <obj_property name="ElementShortName">thermometer_result_2scomp_out[5:0]</obj_property>
+         <obj_property name="ObjectShortName">thermometer_result_2scomp_out[5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDMAGRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/sign_bit_reg" type="logic">
+         <obj_property name="ElementShortName">sign_bit_reg</obj_property>
+         <obj_property name="ObjectShortName">sign_bit_reg</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_valid_out" type="logic">
+         <obj_property name="ElementShortName">thermo_valid_out</obj_property>
+         <obj_property name="ObjectShortName">thermo_valid_out</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group441" type="group">
+      <obj_property name="label">PPA</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_adder/clear" type="logic">
+         <obj_property name="ElementShortName">clear</obj_property>
+         <obj_property name="ObjectShortName">clear</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_valid" type="logic">
+         <obj_property name="ElementShortName">pp_valid</obj_property>
+         <obj_property name="ObjectShortName">pp_valid</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_adder/partial_product" type="array">
+         <obj_property name="ElementShortName">partial_product[5:0]</obj_property>
+         <obj_property name="ObjectShortName">partial_product[5:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_adder/partial_product" type="array">
+         <obj_property name="ElementShortName">partial_product[5:0]</obj_property>
+         <obj_property name="ObjectShortName">partial_product[5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_adder/count" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">count[3:0]</obj_property>
+         <obj_property name="ObjectShortName">count[3:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="label">count[3:0] (LEFT_SHIFT_POSITION)</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_adder/accumulator" type="array">
+         <obj_property name="ElementShortName">accumulator[11:0]</obj_property>
+         <obj_property name="ObjectShortName">accumulator[11:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_adder/accumulator" type="array">
+         <obj_property name="ElementShortName">accumulator[11:0]</obj_property>
+         <obj_property name="ObjectShortName">accumulator[11:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_result" type="array">
+         <obj_property name="ElementShortName">pp_result[11:0]</obj_property>
+         <obj_property name="ObjectShortName">pp_result[11:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_result" type="array">
+         <obj_property name="ElementShortName">pp_result[11:0]</obj_property>
+         <obj_property name="ObjectShortName">pp_result[11:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_ready" type="logic">
+         <obj_property name="ElementShortName">pp_ready</obj_property>
+         <obj_property name="ObjectShortName">pp_ready</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/pp_overflow" type="logic">
+         <obj_property name="ElementShortName">pp_overflow</obj_property>
+         <obj_property name="ObjectShortName">pp_overflow</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/TB_DONE" type="logic">
+      <obj_property name="ElementShortName">TB_DONE</obj_property>
+      <obj_property name="ObjectShortName">TB_DONE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/SERIAL_INPUT_LENGTH" type="array">
+      <obj_property name="ElementShortName">SERIAL_INPUT_LENGTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">SERIAL_INPUT_LENGTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/DATA_WIDTH" type="array">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/CLK_PERIOD" type="array">
+      <obj_property name="ElementShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD[31:0]</obj_property>
+   </wvobject>
+</wave_config>
