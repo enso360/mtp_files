@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Apr 25 08:41:15 2025
+[*]
+[dumpfile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\serial_thermometer_binary2scomp_convertor\memory_twos_complement.vcd"
+[dumpfile_mtime] "Fri Apr 25 08:36:35 2025"
+[dumpfile_size] 2249
+[savefile] "E:\Karan\Github_repos\mtp_files\partial_product_adder\serial_thermometer_binary2scomp_convertor\memory_twos_complement-gtk1.gtkw"
+[timestart] 0
+[size] 1280 729
+[pos] -113 -113
+*-15.181408 41600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 211
+[signals_width] 193
+[sst_expanded] 1
+[sst_vpaned_height] 200
+@24
+memory_twos_complement_tb.addr[4:0]
+@22
+[color] 3
+memory_twos_complement_tb.addr[4:0]
+@23
+[color] 6
+memory_twos_complement_tb.data_out[4:0]
+@c00029
+[color] 6
+memory_twos_complement_tb.data_out[4:0]
+@28
+(0)memory_twos_complement_tb.data_out[4:0]
+(1)memory_twos_complement_tb.data_out[4:0]
+(2)memory_twos_complement_tb.data_out[4:0]
+(3)memory_twos_complement_tb.data_out[4:0]
+(4)memory_twos_complement_tb.data_out[4:0]
+@1401209
+-group_end
+@28
+[color] 3
+memory_twos_complement_tb.addr[4:0]
+[pattern_trace] 1
+[pattern_trace] 0
