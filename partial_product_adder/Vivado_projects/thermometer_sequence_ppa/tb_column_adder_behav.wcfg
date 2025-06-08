@@ -12,12 +12,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="215000fs"></ZoomEndTime>
-      <Cursor1Time time="204734fs"></Cursor1Time>
+      <ZoomEndTime time="20601fs"></ZoomEndTime>
+      <Cursor1Time time="18000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="284"></NameColumnWidth>
-      <ValueColumnWidth column_width="132"></ValueColumnWidth>
+      <ValueColumnWidth column_width="126"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="23" />
    <wvobject fp_name="/tb_column_adder/clk" type="logic">
@@ -44,6 +44,7 @@
    <wvobject fp_name="/tb_column_adder/dut/extended_input" type="array">
       <obj_property name="ElementShortName">extended_input[6:0]</obj_property>
       <obj_property name="ObjectShortName">extended_input[6:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_column_adder/dut/extended_input" type="array">
       <obj_property name="ElementShortName">extended_input[6:0]</obj_property>
