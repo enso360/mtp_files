@@ -59,6 +59,10 @@ module column_adder #(
 	wire signed [SUM_WIDTH-1:0] updated_sum;
 	assign updated_sum = {updated_sum_higher_bits, sum_lower_bits};
 	
+	//input processing condition
+	wire processing_flag;
+	assign processing_flag = (input_valid && !last_input_processed && (iteration_count > 0));
+	
     //Combinational logic for ready signal
     assign column_sum_ready = last_input_processed;
 
@@ -67,19 +71,21 @@ module column_adder #(
         if (clear) begin
 			// temp_sum <=0;
             column_sum <=0;
-			iteration_count <= NUM_SEQ_INPUTS - 1;  //down counter 7 to 0
+			iteration_count <= NUM_SEQ_INPUTS;  //down counter 7 to 0
 			last_input_processed <= 0;
         end else begin 
-			if (input_valid && iteration_count > 0) begin
+			if (processing_flag == 1) begin
 				iteration_count <= iteration_count - 1;
-				column_sum <= updated_sum >>> 1; 
-			end else if (input_valid && iteration_count == 0) begin  //last iteration
-				// Last input - add but don't shift, don't decrement
-				column_sum <= updated_sum;	
-				last_input_processed <= 1;
-			// end else begin 
-				// When iteration_count == 0, hold current values until clear
-			end 
+				column_sum <= updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
+				
+				if (iteration_count == 1) begin  //last iteration
+					last_input_processed <= 1;
+				end else 
+					last_input_processed <= 0;
+				end 
+			else begin 
+				column_sum <= column_sum;  //hold value until external clear input applied
+			end
 		end
     end
 
