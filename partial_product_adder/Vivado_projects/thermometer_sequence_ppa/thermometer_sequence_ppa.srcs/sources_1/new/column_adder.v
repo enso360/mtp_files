@@ -59,6 +59,9 @@ module column_adder #(
 	wire signed [SUM_WIDTH-1:0] updated_sum;
 	assign updated_sum = {updated_sum_higher_bits, sum_lower_bits};
 	
+	wire signed [SUM_WIDTH-1:0] shifted_updated_sum;
+	assign shifted_updated_sum = updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
+	
 	//input processing condition
 	wire processing_flag;
 	assign processing_flag = (input_valid && !last_input_processed && (iteration_count > 0));
@@ -76,7 +79,8 @@ module column_adder #(
         end else begin 
 			if (processing_flag == 1) begin
 				iteration_count <= iteration_count - 1;
-				column_sum <= updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
+				// column_sum <= updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
+				column_sum <= shifted_updated_sum;
 				
 				if (iteration_count == 1) begin  //last iteration
 					last_input_processed <= 1;
