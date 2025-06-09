@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb2_column_adder_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb2_column_adder" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="720000fs"></ZoomStartTime>
+      <ZoomEndTime time="999201fs"></ZoomEndTime>
+      <Cursor1Time time="222800fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="315"></NameColumnWidth>
+      <ValueColumnWidth column_width="148"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/tb2_column_adder/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/clear" type="logic">
+      <obj_property name="ElementShortName">clear</obj_property>
+      <obj_property name="ObjectShortName">clear</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/in" type="array">
+      <obj_property name="ElementShortName">in[5:0]</obj_property>
+      <obj_property name="ObjectShortName">in[5:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/input_valid" type="logic">
+      <obj_property name="ElementShortName">input_valid</obj_property>
+      <obj_property name="ObjectShortName">input_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/column_sum" type="array">
+      <obj_property name="ElementShortName">column_sum[14:0]</obj_property>
+      <obj_property name="ObjectShortName">column_sum[14:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/column_sum_ready" type="logic">
+      <obj_property name="ElementShortName">column_sum_ready</obj_property>
+      <obj_property name="ObjectShortName">column_sum_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/test_inputs" type="array">
+      <obj_property name="ElementShortName">test_inputs[0:7][5:0]</obj_property>
+      <obj_property name="ObjectShortName">test_inputs[0:7][5:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/INPUT_WIDTH" type="array">
+      <obj_property name="ElementShortName">INPUT_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">INPUT_WIDTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/NUM_SEQ_INPUTS" type="array">
+      <obj_property name="ElementShortName">NUM_SEQ_INPUTS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_SEQ_INPUTS[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/SUM_WIDTH" type="array">
+      <obj_property name="ElementShortName">SUM_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">SUM_WIDTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/CLK_PERIOD" type="array">
+      <obj_property name="ElementShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/iteration_count" type="array">
+      <obj_property name="ElementShortName">iteration_count[3:0]</obj_property>
+      <obj_property name="ObjectShortName">iteration_count[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/last_input_processed" type="logic">
+      <obj_property name="ElementShortName">last_input_processed</obj_property>
+      <obj_property name="ObjectShortName">last_input_processed</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/extended_input" type="array">
+      <obj_property name="ElementShortName">extended_input[6:0]</obj_property>
+      <obj_property name="ObjectShortName">extended_input[6:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/sum_higher_bits" type="array">
+      <obj_property name="ElementShortName">sum_higher_bits[6:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_higher_bits[6:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/sum_lower_bits" type="array">
+      <obj_property name="ElementShortName">sum_lower_bits[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_lower_bits[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/updated_sum_higher_bits" type="array">
+      <obj_property name="ElementShortName">updated_sum_higher_bits[6:0]</obj_property>
+      <obj_property name="ObjectShortName">updated_sum_higher_bits[6:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/updated_sum" type="array">
+      <obj_property name="ElementShortName">updated_sum[14:0]</obj_property>
+      <obj_property name="ObjectShortName">updated_sum[14:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/shifted_updated_sum" type="array">
+      <obj_property name="ElementShortName">shifted_updated_sum[14:0]</obj_property>
+      <obj_property name="ObjectShortName">shifted_updated_sum[14:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2_column_adder/dut/processing_flag" type="logic">
+      <obj_property name="ElementShortName">processing_flag</obj_property>
+      <obj_property name="ObjectShortName">processing_flag</obj_property>
+   </wvobject>
+</wave_config>
