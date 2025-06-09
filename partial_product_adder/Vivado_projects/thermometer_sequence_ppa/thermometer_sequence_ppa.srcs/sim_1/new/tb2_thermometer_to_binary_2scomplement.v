@@ -65,13 +65,13 @@ module tb2_thermometer_to_binary_2scomplement();
             $display("Sending pattern %s: %b", pattern_name, pattern);
             
             // Assert start and send the first bit (sign bit at LSB)
-			thermo_start = 1;
-            thermo_serial_in = pattern[0];  // Sign bit at position 0 (LSB)			
+			thermo_start = 1;	
+			thermo_serial_in = pattern[0];  // Sign bit at position 0 (LSB)				
 			@(posedge clk);
 			#5;
             thermo_start = 0;
 			// @(posedge clk);
-			#5;
+			// #5;
 			
             // Send remaining bits one by one
             for (i = 1; i < (SERIAL_INPUT_LENGTH); i = i + 1) begin  //todo //hack

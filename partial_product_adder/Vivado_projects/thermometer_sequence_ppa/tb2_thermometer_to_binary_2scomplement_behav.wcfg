@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="2000001fs"></ZoomEndTime>
-      <Cursor1Time time="1908614fs"></Cursor1Time>
+      <ZoomStartTime time="1573158fs"></ZoomStartTime>
+      <ZoomEndTime time="1843759fs"></ZoomEndTime>
+      <Cursor1Time time="1775358fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="378"></NameColumnWidth>
-      <ValueColumnWidth column_width="148"></ValueColumnWidth>
+      <ValueColumnWidth column_width="130"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="8" />
    <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/clk" type="logic">
@@ -36,6 +36,11 @@
          <obj_property name="ElementShortName">rst</obj_property>
          <obj_property name="ObjectShortName">rst</obj_property>
       </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/bit_counter" type="array">
+         <obj_property name="ElementShortName">bit_counter[6:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_counter[6:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
       <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_start" type="logic">
          <obj_property name="ElementShortName">thermo_start</obj_property>
          <obj_property name="ObjectShortName">thermo_start</obj_property>
@@ -48,11 +53,25 @@
          <obj_property name="CustomSignalColor">#FFFF00</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/sign_bit_reg_next" type="logic">
+         <obj_property name="ElementShortName">sign_bit_reg_next</obj_property>
+         <obj_property name="ObjectShortName">sign_bit_reg_next</obj_property>
+      </wvobject>
       <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/sign_bit_reg" type="logic">
          <obj_property name="ElementShortName">sign_bit_reg</obj_property>
          <obj_property name="ObjectShortName">sign_bit_reg</obj_property>
          <obj_property name="CustomSignalColor">#FF0000</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/sum_magnitude" type="array">
+         <obj_property name="ElementShortName">sum_magnitude[4:0]</obj_property>
+         <obj_property name="ObjectShortName">sum_magnitude[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermo_converter/sum_magnitude_next" type="array">
+         <obj_property name="ElementShortName">sum_magnitude_next[4:0]</obj_property>
+         <obj_property name="ObjectShortName">sum_magnitude_next[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb2_thermometer_to_binary_2scomplement/thermometer_sum_out" type="array">
          <obj_property name="ElementShortName">thermometer_sum_out[4:0]</obj_property>
