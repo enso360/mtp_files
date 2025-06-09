@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module thermometer_to_binary_2scomplement #(
-    parameter SERIAL_INPUT_LENGTH = 33  //32 + 1  //length of serial input thermometer sequence with sign bit as MSB
+    parameter SERIAL_INPUT_LENGTH = 33  //32 + 1  //length of serial input thermometer sequence with inverted sign bit as MSB
 )(
     input wire clk,           
     input wire rst,           // Active high reset
@@ -69,8 +69,8 @@ module thermometer_to_binary_2scomplement #(
                 end
 				
 				START: begin 					
-					//save incoming MSB in sign bit reg
-					if (serial_in) begin 
+					//invert and save incoming MSB in sign bit reg
+					if (!serial_in) begin //sign bit is received inverted 
 						sign_bit_reg <= 1;
 					end else begin
 						sign_bit_reg <= 0;

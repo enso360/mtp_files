@@ -111,7 +111,7 @@ module tb2_thermometer_to_binary_2scomplement();
         #20;
         
         // Test Patterns: 
-        send_pattern(33'b00000000000000000000000000001111_0, "Positive 4");  //+4   			//running sum = 4
+        send_pattern(33'b00000000000000000000000000001111_1, "Positive 4");  //+4   			//running sum = 4
 		wait(thermo_valid_out);
 		@(posedge clk);
 		pp_valid = 1;
@@ -119,7 +119,7 @@ module tb2_thermometer_to_binary_2scomplement();
 		pp_valid = 0;
         #20;
 
-        send_pattern(33'b00000000000000000000000000000111_0, "Positive 3");  //+3 * 2 = +6     //running sum = 10
+        send_pattern(33'b00000000000000000000000000000111_1, "Positive 3");  //+3 * 2 = +6     //running sum = 10
 		wait(thermo_valid_out);
 		@(posedge clk);
 		pp_valid = 1;
@@ -127,7 +127,7 @@ module tb2_thermometer_to_binary_2scomplement();
 		pp_valid = 0;
         #20;
 
-        send_pattern(33'b00000000000000000000000000000011_0, "Positive 2");  //+2 * 4 = +8     //running sum = 18
+        send_pattern(33'b00000000000000000000000000000011_1, "Positive 2");  //+2 * 4 = +8     //running sum = 18
 		wait(thermo_valid_out);
 		@(posedge clk);
 		pp_valid = 1;
@@ -135,7 +135,7 @@ module tb2_thermometer_to_binary_2scomplement();
 		pp_valid = 0;
         #20;
 		
-        send_pattern(33'b01111111111111111111111111111111_1, "Negative 1");  //-1 * 8 = -8	   //running sum = 10
+        send_pattern(33'b01111111111111111111111111111111_0, "Negative 1");  //-1 * 8 = -8	   //running sum = 10
 		wait(thermo_valid_out);
 		@(posedge clk);
 		pp_valid = 1;
