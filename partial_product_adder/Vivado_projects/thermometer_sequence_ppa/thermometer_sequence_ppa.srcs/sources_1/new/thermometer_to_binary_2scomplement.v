@@ -46,8 +46,12 @@ module thermometer_to_binary_2scomplement #(
     //reg serial_in_reg;  // 1-bit register to store the serial_in input bit
 	reg sign_bit_reg;
 
-    // State and data registers logic
-    always @(posedge clk or posedge rst) begin
+    // State and data registers logic // SystemVerilog approach - clear intent
+	// More predictable flip-flop inference with always_ff
+	//synchronous reset preferred for ASIC
+    // always_ff @(posedge clk) begin
+	// Use this for Vivado compatibility
+	always @(posedge clk or posedge rst) begin
         if (rst) begin
             state <= IDLE;
             sum_magnitude <= 0;
@@ -94,7 +98,7 @@ module thermometer_to_binary_2scomplement #(
                     if (serial_in) begin
                         sum_magnitude <= sum_magnitude + 1;
                     end else begin 
-						//sum_magnitude <= sum_magnitude;
+						sum_magnitude <= sum_magnitude;
 					end
                     bit_counter <= bit_counter + 1;
                 end
@@ -112,8 +116,11 @@ module thermometer_to_binary_2scomplement #(
         end
     end
 
-    // Next state logic
-    always @(*) begin
+    // Next state logic // SystemVerilog approach - clear intent
+	// always_comb automatically includes ALL inputs
+	//Prevents accidental latch creation in always_comb blocks
+    // always_comb begin
+	always @(*) begin
         next_state = state;
         
         case (state)
