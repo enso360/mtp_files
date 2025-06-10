@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="93583fs"></ZoomStartTime>
-      <ZoomEndTime time="239284fs"></ZoomEndTime>
-      <Cursor1Time time="205183fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="148101fs"></ZoomEndTime>
+      <Cursor1Time time="23000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="284"></NameColumnWidth>
-      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+      <ValueColumnWidth column_width="96"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="25" />
+   <WVObjectSize size="26" />
    <wvobject fp_name="/tb_column_adder/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -74,20 +74,10 @@
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_column_adder/dut/last_input_processed" type="logic">
-      <obj_property name="ElementShortName">last_input_processed</obj_property>
-      <obj_property name="ObjectShortName">last_input_processed</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_column_adder/column_sum_ready" type="logic">
       <obj_property name="ElementShortName">column_sum_ready</obj_property>
       <obj_property name="ObjectShortName">column_sum_ready</obj_property>
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_adder/dut/processing_flag" type="logic">
-      <obj_property name="ElementShortName">processing_flag</obj_property>
-      <obj_property name="ObjectShortName">processing_flag</obj_property>
-      <obj_property name="CustomSignalColor">#FFA500</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_column_adder/dut/sum_higher_bits" type="array">
@@ -115,9 +105,9 @@
       <obj_property name="ObjectShortName">updated_sum[14:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_column_adder/dut/shifted_updated_sum" type="array">
-      <obj_property name="ElementShortName">shifted_updated_sum[14:0]</obj_property>
-      <obj_property name="ObjectShortName">shifted_updated_sum[14:0]</obj_property>
+   <wvobject fp_name="/tb_column_adder/dut/shifted_sum" type="array">
+      <obj_property name="ElementShortName">shifted_sum[14:0]</obj_property>
+      <obj_property name="ObjectShortName">shifted_sum[14:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_column_adder/dut/updated_sum" type="array">
@@ -125,11 +115,25 @@
       <obj_property name="ObjectShortName">updated_sum[14:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_column_adder/dut/shifted_updated_sum" type="array">
-      <obj_property name="ElementShortName">shifted_updated_sum[14:0]</obj_property>
-      <obj_property name="ObjectShortName">shifted_updated_sum[14:0]</obj_property>
+   <wvobject fp_name="/tb_column_adder/dut/shifted_sum" type="array">
+      <obj_property name="ElementShortName">shifted_sum[14:0]</obj_property>
+      <obj_property name="ObjectShortName">shifted_sum[14:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_adder/dut/last_input_flag" type="logic">
+      <obj_property name="ElementShortName">last_input_flag</obj_property>
+      <obj_property name="ObjectShortName">last_input_flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_adder/dut/next_state" type="array">
+      <obj_property name="ElementShortName">next_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_adder/dut/state" type="array">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_column_adder/i" type="array">

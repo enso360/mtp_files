@@ -28,17 +28,23 @@ module column_adder #(
     input signed [INPUT_WIDTH-1:0] in,    // signed input
     input input_valid,
     output reg signed [(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum,   //signed 7b addition + 8 bit ASR >>>
-	output wire column_sum_ready
+	output reg column_sum_ready   //changed from output wire to output reg
 );
 
+	//state definition 
+	localparam IDLE  		= 2'b00,
+			   PROCESSING   = 2'b01,
+			   DONE 		= 2'b10;
+    reg [1:0] state, next_state;
+	
     // Internal parameter for output width
-    // localparam OUTPUT_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;
     localparam SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;  // e.g., 6+1+8 = 15
-    localparam EXT_IN_WIDTH = INPUT_WIDTH + 1;  // 7 bits
+    localparam EXT_IN_WIDTH = INPUT_WIDTH + 1;  //sign extended input of 7 bits
 
-	//internal registers
-	reg [$clog2(NUM_SEQ_INPUTS+1)-1:0] iteration_count;
-	reg last_input_processed;
+	localparam COUNTER_WIDTH = $clog2(NUM_SEQ_INPUTS+1);
+	reg [COUNTER_WIDTH-1:0] iteration_count;
+	
+	// reg last_input_processed;
 	// reg signed [SUM_WIDTH] temp_sum;
 	
     //Combinational signals
@@ -51,7 +57,7 @@ module column_adder #(
 	assign sum_higher_bits = column_sum[SUM_WIDTH-1 -: EXT_IN_WIDTH];  //column_sum[14:7]
 	assign sum_lower_bits = column_sum[SUM_WIDTH-EXT_IN_WIDTH-1:0];	   //column_sum[7:0]
 	
-	//add extended_input to MSBs of column_sum reg
+	//add extended_input to MSBs of column_sum reg  //sliced adder 
 	wire signed [EXT_IN_WIDTH-1:0] updated_sum_higher_bits;  //7bits
 	assign updated_sum_higher_bits = sum_higher_bits + extended_input;  //sliced addition //synthesize 2 input 7 bit comb adder
 	
@@ -59,38 +65,98 @@ module column_adder #(
 	wire signed [SUM_WIDTH-1:0] updated_sum;
 	assign updated_sum = {updated_sum_higher_bits, sum_lower_bits};
 	
-	wire signed [SUM_WIDTH-1:0] shifted_updated_sum;
-	assign shifted_updated_sum = updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
+	wire signed [SUM_WIDTH-1:0] shifted_sum;
+	assign shifted_sum = updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
 	
-	//input processing condition
-	wire processing_flag;
-	assign processing_flag = (input_valid && !last_input_processed && (iteration_count > 0));
+	//last input condition
+	wire last_input_flag;
+	assign last_input_flag = (iteration_count == 0);  
 	
-    //Combinational logic for ready signal
-    assign column_sum_ready = last_input_processed;
+	// //input processing condition
+	// wire processing_flag;
+	// assign processing_flag = (!last_valid_input_flag && input_valid && (iteration_count > 0));
+	
+    // //Combinational logic for ready signal
+    // // assign column_sum_ready = last_input_processed;
+	// assign column_sum_ready = (state == DONE);
 
-	
-    always @(posedge clk or posedge clear) begin
-        if (clear) begin
-			// temp_sum <=0;
-            column_sum <=0;
-			iteration_count <= NUM_SEQ_INPUTS;  //down counter 7 to 0
-			last_input_processed <= 0;
-        end else begin 
-			if (processing_flag == 1) begin
-				iteration_count <= iteration_count - 1;
-				// column_sum <= updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
-				column_sum <= shifted_updated_sum;
+
+	// FSM Process 1: State and data registers (sequential logic)
+	always @(posedge clk) begin 
+		if (clear) begin //synchronous clear 
+			state <= IDLE; 
+			column_sum <= 0;
+			column_sum_ready <= 0;
+			iteration_count <= NUM_SEQ_INPUTS - 1; //down counter 7 to 0
+		end else begin 
+			state <= next_state; //default state assignment 
+			
+			// Data path updates based on current state
+			case (state) 
+				IDLE: begin 
+					column_sum <= 0; 
+					column_sum_ready <= 0;
+					iteration_count <= NUM_SEQ_INPUTS - 1; 
+				end
 				
-				if (iteration_count == 1) begin  //last iteration
-					last_input_processed <= 1;
-				end else 
-					last_input_processed <= 0;
+				PROCESSING: begin 
+					//update sum if input valid 
+					if (input_valid) begin 
+						//arithmetic shift right by 1, preserve msb sign bit
+						// column_sum <= updated_sum >>> 1; 
+						column_sum <= shifted_sum;					
+						iteration_count <= iteration_count - 1;
+					end else begin 
+						// Hold current value
+						column_sum <= column_sum;
+					end 
+					
+					column_sum_ready <= 0;
 				end 
-			else begin 
-				column_sum <= column_sum;  //hold value until external clear input applied
-			end
-		end
-    end
+				
+				DONE: begin 
+					// Hold current value in DONE state 
+					column_sum <= column_sum;
+					column_sum_ready <= 1;
+				end 
 
-endmodule
+				default: begin 
+					column_sum <= 0; 
+					column_sum_ready <= 0;
+					iteration_count <= NUM_SEQ_INPUTS - 1;
+				end 
+			endcase 
+		end 
+	end 
+
+	// FSM Process 2: Next state and output logic (combinational logic)
+	always @(*) begin 
+		//default assignment
+		next_state = state; 
+		
+		case (state) 
+			IDLE: begin 
+					next_state = (input_valid) ? PROCESSING : IDLE;
+				end 
+				
+			PROCESSING: begin 
+				if (last_input_flag) begin 
+					next_state = DONE;
+				end else begin 
+					// Stay in processing state
+					next_state = PROCESSING;
+				end 
+			end 
+			
+			DONE: begin 
+				// Stay in done state until external clear applied 
+				next_state = DONE;
+			end 
+			
+			default: begin 
+				next_state = IDLE;
+			end 
+		endcase 
+	end 
+	
+endmodule 
