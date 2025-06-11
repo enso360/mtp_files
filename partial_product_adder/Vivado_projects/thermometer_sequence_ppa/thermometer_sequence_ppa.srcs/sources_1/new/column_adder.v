@@ -34,7 +34,8 @@ module column_adder #(
 	//state definition 
 	localparam IDLE  		= 2'b00,
 			   PROCESSING   = 2'b01,
-			   DONE 		= 2'b10;
+			   DONE 		= 2'b10,
+			   HALT 		= 2'b11;
     reg [1:0] state, next_state;
 	
     // Internal parameter for output width
@@ -44,12 +45,16 @@ module column_adder #(
 	localparam COUNTER_WIDTH = $clog2(NUM_SEQ_INPUTS+1);
 	reg [COUNTER_WIDTH-1:0] iteration_count;
 	
-	// reg last_input_processed;
-	// reg signed [SUM_WIDTH] temp_sum;
+	reg signed [INPUT_WIDTH-1:0] input_reg;  //to store new inputs 
 	
     //Combinational signals
+	wire load_new_input;
+	//load new input into register when valid in IDLE and PROCESSING states 
+	assign load_new_input = ((state == IDLE || state == PROCESSING)  && input_valid);	
+	// assign load_new_input = (state == PROCESSING && input_valid);	
+	
     wire signed [EXT_IN_WIDTH-1:0] extended_input;
-	assign extended_input = {in[INPUT_WIDTH-1], in};  // sign-extend 6 bit input to 7 bits for addition 
+	assign extended_input = {input_reg[INPUT_WIDTH-1], input_reg};  // sign-extend 6 bit input to 7 bits for addition 
 
 	wire signed [EXT_IN_WIDTH-1:0] sum_higher_bits;  //7bits
 	wire signed [SUM_WIDTH-EXT_IN_WIDTH-1:0] sum_lower_bits;  //8bits
@@ -59,7 +64,10 @@ module column_adder #(
 	
 	//add extended_input to MSBs of column_sum reg  //sliced adder 
 	wire signed [EXT_IN_WIDTH-1:0] updated_sum_higher_bits;  //7bits
-	assign updated_sum_higher_bits = sum_higher_bits + extended_input;  //sliced addition //synthesize 2 input 7 bit comb adder
+	//sliced addition //synthesize 2 input 7 bit comb adder
+	assign updated_sum_higher_bits = sum_higher_bits + extended_input;
+	// //Continuous assignment with ternary
+	// assign updated_sum_higher_bits = enable_addition ? (sum_higher_bits + extended_input) : sum_higher_bits;
 	
 	//update column sum 
 	wire signed [SUM_WIDTH-1:0] updated_sum;
@@ -69,8 +77,8 @@ module column_adder #(
 	assign shifted_sum = updated_sum >>> 1; //arithmetic shift right by 1, preserve msb sign bit
 	
 	//last input condition
-	wire last_input_flag;
-	assign last_input_flag = (iteration_count == 0);  
+	wire last_iteration_flag;
+	assign last_iteration_flag = (state == PROCESSING && (iteration_count == NUM_SEQ_INPUTS - 1));  
 	
 	// //input processing condition
 	// wire processing_flag;
@@ -85,18 +93,24 @@ module column_adder #(
 	always @(posedge clk) begin 
 		if (clear) begin //synchronous clear 
 			state <= IDLE; 
+			input_reg <= 0;
 			column_sum <= 0;
 			column_sum_ready <= 0;
-			iteration_count <= NUM_SEQ_INPUTS - 1; //down counter 7 to 0
+			iteration_count <= 0;
 		end else begin 
 			state <= next_state; //default state assignment 
-			
+
+			// Load new input only when needed
+			if (load_new_input) begin
+				input_reg <= in;
+			end
+		
 			// Data path updates based on current state
 			case (state) 
 				IDLE: begin 
 					column_sum <= 0; 
 					column_sum_ready <= 0;
-					iteration_count <= NUM_SEQ_INPUTS - 1; 
+					iteration_count <= 0;
 				end
 				
 				PROCESSING: begin 
@@ -105,7 +119,7 @@ module column_adder #(
 						//arithmetic shift right by 1, preserve msb sign bit
 						// column_sum <= updated_sum >>> 1; 
 						column_sum <= shifted_sum;					
-						iteration_count <= iteration_count - 1;
+						iteration_count <= iteration_count + 1;
 					end else begin 
 						// Hold current value
 						column_sum <= column_sum;
@@ -114,8 +128,21 @@ module column_adder #(
 					column_sum_ready <= 0;
 				end 
 				
-				DONE: begin 
-					// Hold current value in DONE state 
+				DONE: begin
+
+					if (!column_sum_ready) begin 
+						//copy the shifted sum for the last time
+						column_sum <= shifted_sum;					
+						// iteration_count <= iteration_count + 1;
+						column_sum_ready <= 1;	
+					end else begin 
+						// Hold current value
+						column_sum <= column_sum;
+					end 
+				end 
+				
+				HALT: begin 
+					// Hold current value
 					column_sum <= column_sum;
 					column_sum_ready <= 1;
 				end 
@@ -123,7 +150,7 @@ module column_adder #(
 				default: begin 
 					column_sum <= 0; 
 					column_sum_ready <= 0;
-					iteration_count <= NUM_SEQ_INPUTS - 1;
+					iteration_count <= 0;
 				end 
 			endcase 
 		end 
@@ -140,7 +167,7 @@ module column_adder #(
 				end 
 				
 			PROCESSING: begin 
-				if (last_input_flag) begin 
+				if (last_iteration_flag) begin 
 					next_state = DONE;
 				end else begin 
 					// Stay in processing state
@@ -149,8 +176,12 @@ module column_adder #(
 			end 
 			
 			DONE: begin 
-				// Stay in done state until external clear applied 
-				next_state = DONE;
+				next_state = HALT;
+			end 
+			
+			HALT: begin 
+				// Stay in halt state until external clear applied 			
+				next_state = HALT;
 			end 
 			
 			default: begin 
@@ -160,3 +191,4 @@ module column_adder #(
 	end 
 	
 endmodule 
+
