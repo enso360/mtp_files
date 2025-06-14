@@ -65,21 +65,45 @@ module tb_column_adder;
         in = 0;
 		TB_COMPLETED = 0;
 
-        // Initialize test input: 8 values (mix of positive and negative)
-        input_data[0] = 6'sd0;
-        input_data[1] = -6'sd1;
-        input_data[2] = 6'sd0;
-        input_data[3] = -6'sd1;
-        input_data[4] = 6'sd0;
-        input_data[5] = -6'sd1;
-        input_data[6] = 6'sd0;
-        input_data[7] = -6'sd1;
+        // Initialize test input: 8 values (mix of positive and negative 1s) = -170 
+        // input_data[0] = 6'sd0;
+        // input_data[1] = -6'sd1;
+        // input_data[2] = 6'sd0;
+        // input_data[3] = -6'sd1;
+        // input_data[4] = 6'sd0;
+        // input_data[5] = -6'sd1;
+        // input_data[6] = 6'sd0;
+        // input_data[7] = -6'sd1;
+		
+		// //extra inputs 
+		// input_data[8] = 6'sd0;
+		// input_data[9] = 6'sd1;
+		// input_data[10] = 6'sd0;
+
+		// all max positive signed values (11111111 = 255) x +31 = 7905 
+        // input_data[1] = 6'sd31;
+        // input_data[2] = 6'sd31;
+        // input_data[3] = 6'sd31;
+        // input_data[4] = 6'sd31;
+        // input_data[5] = 6'sd31;
+        // input_data[6] = 6'sd31;
+        // input_data[7] = 6'sd31;
+
+		// all max negative signed values = (11111111 = 255) x -32 = 8160
+        input_data[0] = -6'sd32;
+        input_data[1] = -6'sd32;
+        input_data[2] = -6'sd32;
+        input_data[3] = -6'sd32;
+        input_data[4] = -6'sd32;
+        input_data[5] = -6'sd32;
+        input_data[6] = -6'sd32;
+        input_data[7] = -6'sd32;
 		
 		//extra inputs 
 		input_data[8] = 6'sd0;
 		input_data[9] = 6'sd1;
 		input_data[10] = 6'sd0;
-
+		
         // Wait for a few cycles with clear asserted
         #20;
         clear = 0;
