@@ -21,7 +21,6 @@
 *.data
 *.backup.*
 *.tmp
-# *.tcl
 *.xml
 
 # Vivado generated output products
@@ -49,7 +48,7 @@ Thumbs.db
 
 # Optional: if using Pynq overlays or .hwh files
 *.hwh
-*.tcl
+
 
 # Ignore simulation/intermediate output files
 *.elf
