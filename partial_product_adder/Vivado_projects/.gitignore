@@ -21,7 +21,7 @@
 *.data
 *.backup.*
 *.tmp
-*.tcl
+# *.tcl
 *.xml
 
 # Vivado generated output products

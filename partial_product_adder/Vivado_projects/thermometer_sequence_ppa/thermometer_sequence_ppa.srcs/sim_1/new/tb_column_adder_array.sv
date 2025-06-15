@@ -27,8 +27,11 @@ module tb_column_adder_array;
     parameter NUM_COLUMNS = 8;
     parameter SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;  // 15 bits
 	
-    parameter CLK_PERIOD = 20;
+    parameter CLK_PERIOD = 10;
 
+	parameter SERIAL_INPUT_LENGTH = 33;
+	localparam LAST_BIT_COUNT = SERIAL_INPUT_LENGTH - 1;
+	
     // Testbench signals
     reg clk;
     reg clear;
@@ -84,10 +87,19 @@ module tb_column_adder_array;
 			input_valid = 0;
 			
 			// #(1 * CLK_PERIOD);
+			repeat(LAST_BIT_COUNT) @(posedge clk); // Wait for 32 clock cycles
         end
 
+		//test with extra input valids 
+		@(posedge clk);
+		input_valid = 1;
+		@(posedge clk);		
         input_valid = 0;
-
+		@(posedge clk);
+		input_valid = 1;
+		@(posedge clk);		
+        input_valid = 0;
+		
         // Wait to observe outputs
         #(10 * CLK_PERIOD);
 
@@ -97,6 +109,29 @@ module tb_column_adder_array;
         end
 
         $finish;
+    end
+
+    // Bit Counter for 0 to 32, increments on new input on posedge clk when input_valid is high
+    integer iteration_bit_count;
+    reg count_enable;
+ 
+    initial begin
+        iteration_bit_count = 0;
+        count_enable = 0;
+    end
+
+    always @(posedge clk) begin
+        if (input_valid) begin
+            iteration_bit_count <= 0;
+            count_enable <= 1;
+        end else if (count_enable) begin
+            if (iteration_bit_count == 32) begin
+                iteration_bit_count <= 0;
+                count_enable <= 0;
+            end else begin
+                iteration_bit_count <= iteration_bit_count + 1;
+            end
+        end
     end
 
     // Test data initialization
