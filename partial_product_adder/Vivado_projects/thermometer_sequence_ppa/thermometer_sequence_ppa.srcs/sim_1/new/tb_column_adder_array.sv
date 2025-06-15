@@ -70,14 +70,20 @@ module tb_column_adder_array;
         // Wait for reset deassertion
         #(2 * CLK_PERIOD);
         clear = 0;
-
+		
         // Apply 8 sequential inputs
         for (i = 0; i < NUM_SEQ_INPUTS; i = i + 1) begin
+			@(posedge clk);
             input_valid = 1;
             for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
                 data_in[j] = test_data[i][j];
             end
-            #(CLK_PERIOD);
+			
+            // #(CLK_PERIOD);
+			@(posedge clk);
+			input_valid = 0;
+			
+			// #(1 * CLK_PERIOD);
         end
 
         input_valid = 0;
@@ -96,7 +102,7 @@ module tb_column_adder_array;
     // Test data initialization
     initial begin
         // Test data of 8 sequences top-down columnwise (test_data[7][x] to test_data[0][x]) format for 8 columns each
-		// Column 0 test data (all +1)
+		// Column 0 test data (all +1) = 255
 		test_data[7][0] = 6'sd1;
 		test_data[6][0] = 6'sd1;
 		test_data[5][0] = 6'sd1;
@@ -106,7 +112,7 @@ module tb_column_adder_array;
 		test_data[1][0] = 6'sd1;
 		test_data[0][0] = 6'sd1;
 
-		// Column 1 test data (all -1)
+		// Column 1 test data (all -1) = -255
 		test_data[7][1] = -6'sd1;
 		test_data[6][1] = -6'sd1;
 		test_data[5][1] = -6'sd1;
@@ -116,7 +122,7 @@ module tb_column_adder_array;
 		test_data[1][1] = -6'sd1;
 		test_data[0][1] = -6'sd1;
 
-		// Column 2 test data (alternating 1 and 0 starting with 1)
+		// Column 2 test data (alternating 1 and 0 starting with 1) = 170
 		test_data[7][2] = 6'sd1;
 		test_data[6][2] = 6'sd0;
 		test_data[5][2] = 6'sd1;
@@ -126,7 +132,7 @@ module tb_column_adder_array;
 		test_data[1][2] = 6'sd1;
 		test_data[0][2] = 6'sd0;
 
-		// Column 3 test data (alternating -1 and 0 starting with -1)
+		// Column 3 test data (alternating -1 and 0 starting with -1) = -170
 		test_data[7][3] = -6'sd1;
 		test_data[6][3] = 6'sd0;
 		test_data[5][3] = -6'sd1;
@@ -136,7 +142,7 @@ module tb_column_adder_array;
 		test_data[1][3] = -6'sd1;
 		test_data[0][3] = 6'sd0;
 
-		// Column 4 test data (all +31)
+		// Column 4 test data (all +31) = 11111111 (255) x 31 = 7905 
 		test_data[7][4] = 6'sd31;
 		test_data[6][4] = 6'sd31;
 		test_data[5][4] = 6'sd31;
@@ -146,7 +152,7 @@ module tb_column_adder_array;
 		test_data[1][4] = 6'sd31;
 		test_data[0][4] = 6'sd31;
 
-		// Column 5 test data (all -32)
+		// Column 5 test data (all -32) = 11111111 (255) x -32 = -8160 
 		test_data[7][5] = -6'sd32;
 		test_data[6][5] = -6'sd32;
 		test_data[5][5] = -6'sd32;
