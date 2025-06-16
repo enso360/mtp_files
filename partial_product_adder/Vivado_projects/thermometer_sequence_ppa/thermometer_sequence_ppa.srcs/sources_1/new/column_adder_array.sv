@@ -36,9 +36,6 @@ module column_adder_array #(
     output wire [NUM_COLUMNS-1:0] column_sum_ready
 );
 
-    // Internal parameter for output width
-    localparam SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;
-
     // Generate block for creating column adders
     genvar i;
     generate
@@ -56,5 +53,48 @@ module column_adder_array #(
             );
         end
     endgenerate
+
+
+    // Internal parameter for output width
+    localparam SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;	
+	localparam SIGN_EXT_SHIFTED_SUM_WIDTH = SUM_WIDTH + 1 + NUM_COLUMNS;
+
+	// New output declaration
+	wire signed [NUM_COLUMNS-1:0][(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS + 1 + NUM_COLUMNS) - 1:0] Sign_Ext_and_Shifted_Col_Sum;
+
+	// Generate block for sign extension and shifting
+	genvar j;
+	generate
+		for (j = 0; j < NUM_COLUMNS; j = j + 1) begin : gen_sign_ext_shift
+			assign Sign_Ext_and_Shifted_Col_Sum[j] = {
+				{(NUM_COLUMNS + 1 - j){column_sum[j][SUM_WIDTH-1]}},  // Sign extension
+				column_sum[j],                                         // Original value
+				{j{1'b0}}                                             // Zero padding (LSB)
+			};
+		end
+	endgenerate
+
+	//Final Vector Merge addition 
+	// Declare Final_Vector_Sum with localparam
+	localparam FINAL_SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS + 1 + NUM_COLUMNS;
+	wire signed [FINAL_SUM_WIDTH - 1:0] Final_Vector_Sum;
+
+	// Generate block for adding all Sign_Ext_and_Shifted_Col_Sum values
+	genvar k;
+	generate
+		// Create intermediate sum wires for the adder tree
+		wire signed [FINAL_SUM_WIDTH - 1:0] partial_sum [NUM_COLUMNS:0];
+		
+		// Initialize the first partial sum to zero
+		assign partial_sum[0] = {FINAL_SUM_WIDTH{1'b0}};
+		
+		// Add each Sign_Ext_and_Shifted_Col_Sum to the running sum
+		for (k = 0; k < NUM_COLUMNS; k = k + 1) begin : gen_accumulate
+			assign partial_sum[k+1] = partial_sum[k] + Sign_Ext_and_Shifted_Col_Sum[k];
+		end
+		
+		// Final result
+		assign Final_Vector_Sum = partial_sum[NUM_COLUMNS];
+	endgenerate
 
 endmodule
