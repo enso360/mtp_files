@@ -29,7 +29,7 @@ module thermo2binary #(
     input wire serial_in,     
     output reg valid_out,         
     output reg [$clog2(SERIAL_INPUT_LENGTH - 1) - 1:0] sum_magnitude_out,  // for sum magnitude without sign bit
-	output reg [$clog2(SERIAL_INPUT_LENGTH - 1):0] signed_result_out // for final result including sign bit
+	output reg signed [$clog2(SERIAL_INPUT_LENGTH - 1):0] signed_result_out // for final result including sign bit
 );
 
     // State definition
