@@ -33,7 +33,7 @@ module tb_thermo2binary();
     reg thermo_serial_in;
     wire thermo_valid_out;
     wire [$clog2(SERIAL_INPUT_LENGTH - 1) - 1:0] sum_magnitude_out;
-    wire [$clog2(SERIAL_INPUT_LENGTH - 1):0] signed_result_out;
+    wire signed [$clog2(SERIAL_INPUT_LENGTH - 1):0] signed_result_out;
     
 	reg TB_DONE = 0; 
 	
