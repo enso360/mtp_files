@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: IIT Bombay
+// Engineer: Karan J.
 // 
-// Create Date: 05.05.2025 22:36:18
+// Create Date: 
 // Design Name: 
-// Module Name: thermometer_to_binary_2scomplement
+// Module Name: thermo2binary
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module thermometer_to_binary_2scomplement #(
+module thermo2binary #(
     parameter SERIAL_INPUT_LENGTH = 33  //32 + 1  //length of serial input thermometer sequence with inverted sign bit as MSB
 )(
     input wire clk,           
@@ -28,8 +28,8 @@ module thermometer_to_binary_2scomplement #(
     input wire start,         
     input wire serial_in,     
     output reg valid_out,         
-    output reg [$clog2(SERIAL_INPUT_LENGTH - 1) - 1:0] thermometer_sum_out,  // for sum magnitude without sign bit
-	output reg [$clog2(SERIAL_INPUT_LENGTH - 1):0] thermometer_result_2scomp_out // for final result including sign bit
+    output reg [$clog2(SERIAL_INPUT_LENGTH - 1) - 1:0] sum_magnitude_out,  // for sum magnitude without sign bit
+	output reg [$clog2(SERIAL_INPUT_LENGTH - 1):0] signed_result_out // for final result including sign bit
 );
 
     // State definition
@@ -46,7 +46,7 @@ module thermometer_to_binary_2scomplement #(
 	
     // Internal registers
     reg [1:0] state, next_state;
-    // Size sum_magnitude register to match thermometer_sum_out
+    // Size sum_magnitude register to match sum_magnitude_out
     reg [SUM_WIDTH-1:0] sum_magnitude; //2s complement magnitude of 5 bits binary sum_magnitude for 32 levels
 	reg [SUM_WIDTH-1:0] sum_magnitude_next;  //to hold updated sum 
 	
@@ -68,9 +68,9 @@ module thermometer_to_binary_2scomplement #(
             sum_magnitude <= 0;
             bit_counter <= 0;
             valid_out <= 0;
-            thermometer_sum_out <= 0;
+            sum_magnitude_out <= 0;
 			sign_bit_reg <= 0;
-			thermometer_result_2scomp_out <= 0;
+			signed_result_out <= 0;
             //serial_in_reg <= 0;
         end else begin
             state <= next_state;
@@ -93,8 +93,8 @@ module thermometer_to_binary_2scomplement #(
 					
 					//// Avoid unnecessary clearing during processing
 					// sign_bit_reg <= 0;
-					// thermometer_sum_out <= 0;
-					// thermometer_result_2scomp_out <= 0; 
+					// sum_magnitude_out <= 0;
+					// signed_result_out <= 0; 
 					//count 1 is for sign bit 
 					bit_counter <= bit_counter_next;
 				end 
@@ -110,8 +110,8 @@ module thermometer_to_binary_2scomplement #(
 				
                 DONE: begin
                     valid_out <= 1;
-                    thermometer_sum_out <= sum_magnitude;
-					thermometer_result_2scomp_out <= {sign_bit_reg, sum_magnitude}; //concatenate sign bit to sum_magnitude magnitude
+                    sum_magnitude_out <= sum_magnitude;
+					signed_result_out <= {sign_bit_reg, sum_magnitude}; //concatenate sign bit to sum_magnitude magnitude
                 end
 				
                 default: begin
@@ -152,7 +152,7 @@ module thermometer_to_binary_2scomplement #(
 		
 		case (state)
 			START: begin
-				sign_bit_reg_next = !serial_in;	
+				sign_bit_reg_next = !serial_in;	//Sign is inverted 
 				bit_counter_next = bit_counter + 1;
 			end
 			
