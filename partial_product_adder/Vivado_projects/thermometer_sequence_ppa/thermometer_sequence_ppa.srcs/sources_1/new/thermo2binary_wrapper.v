@@ -26,7 +26,7 @@ module thermo2binary_wrapper #(
 	parameter T2B_OUT_WIDTH = 6	
 )(
     input wire clk,           
-    input wire rst,           
+    input wire reset,           
     input wire start,         
     input wire serial_in,            
     output wire signed [T2B_OUT_WIDTH - 1:0] signed_result_out,
@@ -53,9 +53,9 @@ module thermo2binary_wrapper #(
 	// reg [COUNT_WIDTH:0] bit_counter_next;
 
     // Control signals to core module
-	reg reset_data;
+	reg clear_data;
 	reg capture_sign;
-    reg enable; 
+    reg add_enable; 
     reg latch_data;
 	
     wire processing_complete;
@@ -68,10 +68,10 @@ module thermo2binary_wrapper #(
 		.T2B_OUT_WIDTH(T2B_OUT_WIDTH)
     ) t2b_dut (
         .clk(clk),
-        .rst(rst),		
-        .reset_data(reset_data),
+        .reset(reset),		
+        .clear_data(clear_data),
         .capture_sign(capture_sign),
-        .enable(enable),
+        .add_enable(add_enable),
         .latch_data(latch_data),		
         .serial_in(serial_in),
         .signed_result_out(signed_result_out)		
@@ -80,7 +80,7 @@ module thermo2binary_wrapper #(
 
     // FSM block for Wrapper State registers and bit counter
     always @(posedge clk) begin
-        if (rst) begin
+        if (reset) begin
             state <= IDLE;
             bit_counter <= 0;
 			valid_out_reg <= 0;
@@ -90,7 +90,7 @@ module thermo2binary_wrapper #(
             case (state)
                 IDLE: begin
                     bit_counter <= 0; // Reset counter when idle
-					valid_out_reg <= 0;
+					// valid_out_reg <= 0;
                 end
                 
                 START: begin
@@ -134,14 +134,16 @@ module thermo2binary_wrapper #(
     // Control signal generation
     always @(*) begin
         // Default values
-        reset_data = 0;
+        clear_data = 0;
         capture_sign = 0;		
-        enable = 0;
+        add_enable = 0;
         latch_data = 0;
         
         case (state)
             IDLE: begin
-                reset_data = 1; // Reset data when idle
+				if (start) begin 
+					clear_data = 1; // assert clear data in idle
+				end 
             end
             
             START: begin
@@ -149,11 +151,11 @@ module thermo2binary_wrapper #(
             end
             
             ADDING: begin
-                enable = 1; // Enable processing of data bits
+                add_enable = 1; // Enable processing of data bits
             end
             
             DONE: begin
-                latch_data = 1; // enable latch signal to latch result
+                latch_data = 1; // Enable latch signal to latch result
             end
         endcase
     end

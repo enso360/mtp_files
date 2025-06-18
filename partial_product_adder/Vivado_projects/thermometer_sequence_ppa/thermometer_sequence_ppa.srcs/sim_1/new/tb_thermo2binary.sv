@@ -54,7 +54,7 @@ module tb_thermo2binary();
         #(CLK_PERIOD/2) clk = ~clk;
     end
     
-    // Task to send a 33-bit pattern with sign bit at LSB
+    // Task to send a 33-bit pattern with sign bit as 1st bit 
     task send_pattern;
         input [32:0] pattern;
         input [64:0] pattern_name;

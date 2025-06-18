@@ -25,11 +25,11 @@ module thermo2binary_core #(
 	parameter T2B_OUT_WIDTH = 6			//1 bit sign + 5 bit magnitude
 )(
     input wire clk,           
-    input wire rst,           // Active high reset
+    input wire reset,           // Active high reset
 	
-	input wire reset_data,    // Reset data signal from wrapper
+	input wire clear_data,    // Reset data signal from wrapper
 	input wire capture_sign,  // Capture sign bit signal from wrapper
-    input wire enable,    	  // Enable signal from wrapper 
+    input wire add_enable,    	  // Enable signal from wrapper 
 	input wire latch_data,    // Latch data signal from wrapper
 	
     input wire serial_in,             
@@ -52,35 +52,39 @@ module thermo2binary_core #(
     // always_ff @(posedge clk) begin
 	// Use this for Vivado compatibility
 	always @(posedge clk) begin
-        if (rst) begin
+        if (reset) begin
             sum_magnitude <= 0;
 			sign_bit_reg <= 0;
 			signed_result_out <= 0;		
             //serial_in_reg <= 0;
-        end else begin
-            // Reset data when commanded by wrapper
-            if (reset_data) begin
+        end 
+		// clear data when commanded by wrapper
+		else if (clear_data) begin 
 				sum_magnitude <= 0;
 				sign_bit_reg <= 0;
 				// signed_result_out <= 0;
-            end            
-            // Capture sign bit when commanded by wrapper
-            else if (capture_sign) begin
+        end else begin 
+		//**the following conditions must be mutually exclusive - ensured by external FSM control logic**
+		//also ensure that a register is being driven by only one signal at a time to avoid race conditions 
+		//done this to reduce mux/gate count 
+			// sum_magnitude <= add_enable ? sum_magnitude + serial_in : sum_magnitude;
+			
+			// Capture sign bit when commanded by wrapper						
+			if (capture_sign) begin
 				//invert and save incoming bit in sign bit reg			
-                sign_bit_reg <= !serial_in; // Sign bit is received inverted
-            end
-            // add data bits when adder enabled
-            else if (enable) begin
-                sum_magnitude <= sum_magnitude + serial_in;  //todo* : zero extend to 5 bits 
-            end		
+				sign_bit_reg <= !serial_in; // Sign bit is received inverted
+			end
+			
+			// add data bits when adder enabled
+			if (add_enable) begin
+				sum_magnitude <= sum_magnitude + serial_in;  //todo* : zero extend to 5 bits 
+			end		
+			
 			// Latch data when commanded by wrapper
-            else if (latch_data) begin
-                signed_result_out <= {sign_bit_reg, sum_magnitude}; //concatenate sign bit to sum_magnitude
-            end	
-			else begin 
-				//sum_magnitude <= 0;
-			end 
-        end
+			if (latch_data) begin
+				signed_result_out <= {sign_bit_reg, sum_magnitude}; //concatenate sign bit to sum_magnitude
+			end	
+		end 
     end
 
 endmodule
