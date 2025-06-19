@@ -5,7 +5,7 @@
 // 
 // Create Date: 
 // Design Name: 
-// Module Name: tb_thermo2binary_wrapper
+// Module Name: tb_thermo2binary_array_wrapper
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,32 +19,36 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module tb_thermo2binary_wrapper();
+module tb_thermo2binary_array_wrapper();
     parameter SERIAL_INPUT_LENGTH = 33;  // 32 bits + 1 sign bit
     parameter T2B_OUT_WIDTH = 6;         // 1-bit sign + 5-bit magnitude
+	parameter NUM_COLUMNS = 8;
+	
     parameter CLK_PERIOD = 20;           // Clock period in ns
     
-    reg clk;
-    reg reset;
-    
-    reg thermo_start;
-    reg thermo_serial_in;
-    wire thermo_valid_out;
-    wire signed [T2B_OUT_WIDTH-1:0] signed_result_out;
+    reg clk;	//common 
+    reg reset;	//common
+    reg thermo_start;  //common 
+	// A packed array for input data
+    reg [NUM_COLUMNS-1:0] thermo_serial_in_array;  //serial_in bits 
+	// 2D Packed array for output
+    wire signed [NUM_COLUMNS-1:0][T2B_OUT_WIDTH-1:0] signed_result_out_array;	
+    wire thermo_valid_out;  //common
 
 	reg TB_DONE = 0;
 	
-    // Instantiate the wrapper module
-    thermo2binary_wrapper #(
+    // Instantiate the thermo2binary_array_wrapper module
+    thermo2binary_array_wrapper #(
         .SERIAL_INPUT_LENGTH(SERIAL_INPUT_LENGTH),
-        .T2B_OUT_WIDTH(T2B_OUT_WIDTH)
-    ) dut (
+        .T2B_OUT_WIDTH(T2B_OUT_WIDTH),
+		.NUM_COLUMNS(NUM_COLUMNS)
+    ) dut_thermo2binary_array_wrapper (
         .clk(clk),
         .reset(reset),
         .start(thermo_start),
-        .serial_in(thermo_serial_in),
-        .valid_out(thermo_valid_out),
-        .signed_result_out(signed_result_out)
+        .serial_in_array(thermo_serial_in_array),
+        .signed_result_out_array(signed_result_out_array),
+        .valid_out(thermo_valid_out)		
     );
 
     always begin
@@ -52,10 +56,11 @@ module tb_thermo2binary_wrapper();
     end
 
     // Task to send a 33-bit thermometer code with sign bit as 1st bit  (inverted)
+	// pass the same serial bits to all 8 parallel t2b core modules for simple testing
     task send_pattern;
         input [32:0] pattern;
         input [64:0] pattern_name;
-        integer i;
+        integer i, j;
         begin
             @(posedge clk);
             $display("Sending pattern %s: %b", pattern_name, pattern);
@@ -63,45 +68,56 @@ module tb_thermo2binary_wrapper();
             thermo_start <= 1;  //Non-blocking update inside a task after clk edge
 			
             @(posedge clk);
-			thermo_serial_in <= pattern[0]; /// Inverted Sign bit at position 0	//Non-blocking update inside a task after clk edge			
+			for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
+				thermo_serial_in_array[j] <= pattern[0]; /// Inverted Sign bit at position 0	//Non-blocking update inside a task after clk edge			
+			end 
 			thermo_start <= 0;
 				
             // Send remaining bits
             for (i = 1; i < SERIAL_INPUT_LENGTH; i = i + 1) begin
                 @(posedge clk);				
-                thermo_serial_in <= pattern[i];	//Non-blocking update inside a task after clk edge			
-            end
+                for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
+					thermo_serial_in_array[j] <= pattern[i];	//Non-blocking update inside a task after clk edge			
+				end 
+			end
 
             // Idle input
             @(posedge clk);
-            thermo_serial_in <= 0;
+				for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
+					thermo_serial_in_array[j] <= 0;
+				end 
 
             wait(thermo_valid_out);
-
-            $display("Pattern %s complete: result=%0d", 
-                     pattern_name, $signed(signed_result_out));
-
             // #50;
         end
     endtask
 
+	
+	integer j;
+		
     // Main test sequence
     initial begin
 		// Initialize signals
         clk = 0;
         reset = 1;
         thermo_start = 0;
-        thermo_serial_in = 0;
+		//initialize all serial input bits to 0
+		// thermo_serial_in_array = 0;	
+		for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
+			thermo_serial_in_array[j] = 0;
+		end 
 		
 		// Reset sequence
-        #40;
-        reset = 0;
-        #40;
+		reset = 1;
+		repeat (2) @(posedge clk);
+		reset = 0;
+		repeat (2) @(posedge clk);
 
-        $display("Starting testbench for thermo2binary_wrapper");
-        $display("SERIAL_INPUT_LENGTH = %0d, T2B_OUT_WIDTH = %0d", SERIAL_INPUT_LENGTH, T2B_OUT_WIDTH);
+        $display("Starting testbench");
+        $display("SERIAL_INPUT_LENGTH = %0d, T2B_OUT_WIDTH = %0d, NUM_COLUMNS = %0d", 
+         SERIAL_INPUT_LENGTH, T2B_OUT_WIDTH, NUM_COLUMNS);
 		
-		// Test Patterns:
+		// Test Patterns: //pass the same serial bits to all 8 parallel t2b core modules for simple testing
         send_pattern(33'b00000000000000000000000000001111_1, "Positive 4");  //+4
 		#20;
         send_pattern(33'b00000000000000000000000000000111_1, "Positive 3");  //+3
@@ -129,23 +145,14 @@ module tb_thermo2binary_wrapper();
         send_pattern(33'b11111111111111111111111111111111_0, "Test 32 bits 1s, sign 0"); //negative overflow -0 = -32 
         #20;
 		
-        #200;
+        #500;
 		
 		TB_DONE = 1; 
-		#50;
+		#500;
 		
         $display("Testbench completed");
         $finish;
     end
 
-
-    // // Monitor to track state transitions (optional debug)
-    // always @(posedge clk) begin
-        // if (thermo_start)
-            // $display("Time %0t: START asserted", $time);
-        // if (thermo_valid_out)
-            // $display("Time %0t: VALID asserted, result = %0d", $time, $signed(signed_result_out));
-    // end
 	
 endmodule
-
