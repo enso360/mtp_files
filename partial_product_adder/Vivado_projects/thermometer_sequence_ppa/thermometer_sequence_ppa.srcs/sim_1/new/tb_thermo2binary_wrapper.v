@@ -34,7 +34,7 @@ module tb_thermo2binary_wrapper();
 
 	reg TB_DONE = 0;
 	
-    // Instantiate the updated wrapper module
+    // Instantiate the wrapper module
     thermo2binary_wrapper #(
         .SERIAL_INPUT_LENGTH(SERIAL_INPUT_LENGTH),
         .T2B_OUT_WIDTH(T2B_OUT_WIDTH)
@@ -51,7 +51,7 @@ module tb_thermo2binary_wrapper();
         #(CLK_PERIOD/2) clk = ~clk;
     end
 
-    // Task to send a 33-bit thermometer code with sign bit as LSB (inverted)
+    // Task to send a 33-bit thermometer code with sign bit as 1st bit  (inverted)
     task send_pattern;
         input [32:0] pattern;
         input [64:0] pattern_name;
@@ -59,11 +59,11 @@ module tb_thermo2binary_wrapper();
         begin
             @(posedge clk);
             $display("Sending pattern %s: %b", pattern_name, pattern);
-            // Send the start signal and first bit (sign)
+            // Send the start signal and first bit (inverted sign bit)
             thermo_start <= 1;  //Non-blocking update inside a task after clk edge
 			
             @(posedge clk);
-			thermo_serial_in <= pattern[0]; // inverted sign	//Non-blocking update inside a task after clk edge			
+			thermo_serial_in <= pattern[0]; /// Inverted Sign bit at position 0	//Non-blocking update inside a task after clk edge			
 			thermo_start <= 0;
 				
             // Send remaining bits
@@ -81,26 +81,54 @@ module tb_thermo2binary_wrapper();
             $display("Pattern %s complete: result=%0d", 
                      pattern_name, $signed(signed_result_out));
 
-            #50;
+            // #50;
         end
     endtask
 
     // Main test sequence
     initial begin
+		// Initialize signals
         clk = 0;
         reset = 1;
         thermo_start = 0;
         thermo_serial_in = 0;
-
+		
+		// Reset sequence
         #40;
         reset = 0;
         #40;
 
-        send_pattern(33'b00000000000000000000000000001111_1, "Positive 4");
-        send_pattern(33'b00000000000000000000000000000111_1, "Positive 3");
-        send_pattern(33'b00000000000000000000000000000011_1, "Positive 2");
-        send_pattern(33'b01111111111111111111111111111111_0, "Negative 1");
-
+        $display("Starting testbench for thermo2binary_wrapper");
+        $display("SERIAL_INPUT_LENGTH = %0d, T2B_OUT_WIDTH = %0d", SERIAL_INPUT_LENGTH, T2B_OUT_WIDTH);
+		
+		// Test Patterns:
+        send_pattern(33'b00000000000000000000000000001111_1, "Positive 4");  //+4
+		#20;
+        send_pattern(33'b00000000000000000000000000000111_1, "Positive 3");  //+3
+		#20;
+        send_pattern(33'b00000000000000000000000000000011_1, "Positive 2");  //+2
+		#20;
+        send_pattern(33'b01111111111111111111111111111111_0, "Negative 1");  //-1
+		#20;
+        // Test maximum positive value +31
+        send_pattern(33'b01111111111111111111111111111111_1, "Positive 31"); // +31
+        #20;
+		// Test maximum negative value -32
+        send_pattern(33'b00000000000000000000000000000000_0, "Negative 32");  // -32
+        #20;
+		// Test 32 bits 0s, sign 1
+        send_pattern(33'b00000000000000000000000000000000_1, "Test 32 bits 0s, sign 1");  //+0
+        #20;
+		// Test 32 bits 0s, sign 0
+        send_pattern(33'b00000000000000000000000000000000_0, "Test 32 bits 0s, sign 0"); //-32
+        #20;
+		// Test 32 bits 1s, sign 1
+        send_pattern(33'b11111111111111111111111111111111_1, "Test 32 bits 1s, sign 1"); //positive overflow +32 = +0
+        #20;
+		// Test 32 bits 1s, sign 0
+        send_pattern(33'b11111111111111111111111111111111_0, "Test 32 bits 1s, sign 1"); //negative overflow -0 = -32 
+        #20;
+		
         #200;
 		
 		TB_DONE = 1; 
@@ -110,5 +138,14 @@ module tb_thermo2binary_wrapper();
         $finish;
     end
 
+
+    // // Monitor to track state transitions (optional debug)
+    // always @(posedge clk) begin
+        // if (thermo_start)
+            // $display("Time %0t: START asserted", $time);
+        // if (thermo_valid_out)
+            // $display("Time %0t: VALID asserted, result = %0d", $time, $signed(signed_result_out));
+    // end
+	
 endmodule
 
