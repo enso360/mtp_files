@@ -13,11 +13,11 @@
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
       <ZoomEndTime time="2875001fs"></ZoomEndTime>
-      <Cursor1Time time="2758858fs"></Cursor1Time>
+      <Cursor1Time time="2772996fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="258"></NameColumnWidth>
-      <ValueColumnWidth column_width="93"></ValueColumnWidth>
+      <NameColumnWidth column_width="251"></NameColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="23" />
    <wvobject fp_name="/tb_column_adder_array/clk" type="logic">
@@ -43,6 +43,78 @@
       <obj_property name="isExpanded"></obj_property>
       <obj_property name="CustomSignalColor">#FFFF00</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+      <wvobject fp_name="/tb_column_adder_array/data_in[7]" type="array">
+         <obj_property name="ElementShortName">[7][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[6]" type="array">
+         <obj_property name="ElementShortName">[6][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[5]" type="array">
+         <obj_property name="ElementShortName">[5][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[4]" type="array">
+         <obj_property name="ElementShortName">[4][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[3]" type="array">
+         <obj_property name="ElementShortName">[3][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[2]" type="array">
+         <obj_property name="ElementShortName">[2][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[1]" type="array">
+         <obj_property name="ElementShortName">[1][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[0]" type="array">
+         <obj_property name="ElementShortName">[0][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][5:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[7]" type="array">
+         <obj_property name="ElementShortName">[7][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[6]" type="array">
+         <obj_property name="ElementShortName">[6][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[5]" type="array">
+         <obj_property name="ElementShortName">[5][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[4]" type="array">
+         <obj_property name="ElementShortName">[4][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[3]" type="array">
+         <obj_property name="ElementShortName">[3][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[2]" type="array">
+         <obj_property name="ElementShortName">[2][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[1]" type="array">
+         <obj_property name="ElementShortName">[1][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/data_in[0]" type="array">
+         <obj_property name="ElementShortName">[0][5:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][5:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_column_adder_array/dut/\gen_column_adders[0].column_adder_inst /load_new_input" type="logic">
       <obj_property name="ElementShortName">load_new_input</obj_property>
@@ -59,6 +131,78 @@
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[7]" type="array">
+         <obj_property name="ElementShortName">[7][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[6]" type="array">
+         <obj_property name="ElementShortName">[6][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[5]" type="array">
+         <obj_property name="ElementShortName">[5][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[4]" type="array">
+         <obj_property name="ElementShortName">[4][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[3]" type="array">
+         <obj_property name="ElementShortName">[3][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[2]" type="array">
+         <obj_property name="ElementShortName">[2][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[1]" type="array">
+         <obj_property name="ElementShortName">[1][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[0]" type="array">
+         <obj_property name="ElementShortName">[0][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][14:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[7]" type="array">
+         <obj_property name="ElementShortName">[7][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[6]" type="array">
+         <obj_property name="ElementShortName">[6][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[5]" type="array">
+         <obj_property name="ElementShortName">[5][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[4]" type="array">
+         <obj_property name="ElementShortName">[4][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[3]" type="array">
+         <obj_property name="ElementShortName">[3][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[2]" type="array">
+         <obj_property name="ElementShortName">[2][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[1]" type="array">
+         <obj_property name="ElementShortName">[1][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/column_sum[0]" type="array">
+         <obj_property name="ElementShortName">[0][14:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][14:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_column_adder_array/column_sum_ready" type="array">
       <obj_property name="ElementShortName">column_sum_ready[7:0]</obj_property>
@@ -113,6 +257,38 @@
          <obj_property name="ElementShortName">[0][23:0]</obj_property>
          <obj_property name="ObjectShortName">[0][23:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[7]" type="array">
+         <obj_property name="ElementShortName">[7][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[6]" type="array">
+         <obj_property name="ElementShortName">[6][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[5]" type="array">
+         <obj_property name="ElementShortName">[5][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[4]" type="array">
+         <obj_property name="ElementShortName">[4][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[3]" type="array">
+         <obj_property name="ElementShortName">[3][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[2]" type="array">
+         <obj_property name="ElementShortName">[2][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[1]" type="array">
+         <obj_property name="ElementShortName">[1][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/Sign_Ext_and_Shifted_Col_Sum[0]" type="array">
+         <obj_property name="ElementShortName">[0][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][23:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_column_adder_array/dut/Final_Vector_Sum" type="array">
@@ -171,6 +347,42 @@
          <obj_property name="ElementShortName">[0][23:0]</obj_property>
          <obj_property name="ObjectShortName">[0][23:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[8]" type="array">
+         <obj_property name="ElementShortName">[8][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[7]" type="array">
+         <obj_property name="ElementShortName">[7][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[6]" type="array">
+         <obj_property name="ElementShortName">[6][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[5]" type="array">
+         <obj_property name="ElementShortName">[5][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[4]" type="array">
+         <obj_property name="ElementShortName">[4][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[3]" type="array">
+         <obj_property name="ElementShortName">[3][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[2]" type="array">
+         <obj_property name="ElementShortName">[2][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[1]" type="array">
+         <obj_property name="ElementShortName">[1][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_adder_array/dut/partial_sum[0]" type="array">
+         <obj_property name="ElementShortName">[0][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][23:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_column_adder_array/dut/\gen_column_adders[0].column_adder_inst /state" type="array">

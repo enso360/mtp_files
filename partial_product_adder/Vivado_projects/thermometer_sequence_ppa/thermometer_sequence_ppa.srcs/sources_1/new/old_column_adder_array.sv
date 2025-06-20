@@ -5,7 +5,7 @@
 // 
 // Create Date: 
 // Design Name: 
-// Module Name: column_adder_array_wrapper
+// Module Name: column_adder_array
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
