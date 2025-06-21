@@ -25,12 +25,15 @@ module tb_column_adder_array;
     parameter INPUT_WIDTH = 6;
     parameter NUM_SEQ_INPUTS = 8;
     parameter NUM_COLUMNS = 8;
-    parameter SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;  // 15 bits
+	// Declare Final_Vector_Sum
+	parameter FINAL_VECTOR_SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS + 1 + NUM_COLUMNS;  //24 bits 
 	
     parameter CLK_PERIOD = 10;
 
 	parameter SERIAL_INPUT_LENGTH = 33;
 	localparam LAST_BIT_COUNT = SERIAL_INPUT_LENGTH - 1;
+
+    localparam SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;  // 15 bits
 	
     // Testbench signals
     reg clk;
@@ -38,23 +41,31 @@ module tb_column_adder_array;
     reg input_valid;
     reg signed [NUM_COLUMNS-1:0][INPUT_WIDTH-1:0] data_in;
     wire signed [NUM_COLUMNS-1:0][SUM_WIDTH-1:0] column_sum;
-    wire [NUM_COLUMNS-1:0] column_sum_ready;
+    wire column_sum_ready;
 
+	wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] Final_Vector_Sum;
+	wire array_processing_complete;
+	
     // reg signed [NUM_SEQ_INPUTS-1:0][NUM_COLUMNS-1:0][INPUT_WIDTH-1:0] test_data;  //3D MDA 
 	reg signed [INPUT_WIDTH-1:0] test_data [0:NUM_SEQ_INPUTS-1][0:NUM_COLUMNS-1]; // 1D x 2D MDA vector
+	
+	reg TB_DONE;
 	
     // DUT instantiation
     column_adder_array #(
         .INPUT_WIDTH(INPUT_WIDTH),
         .NUM_SEQ_INPUTS(NUM_SEQ_INPUTS),
-        .NUM_COLUMNS(NUM_COLUMNS)
+        .NUM_COLUMNS(NUM_COLUMNS),
+		.FINAL_VECTOR_SUM_WIDTH(FINAL_VECTOR_SUM_WIDTH)
     ) dut (
         .clk(clk),
         .clear(clear),
         .input_valid(input_valid),
         .data_in(data_in),
         .column_sum(column_sum),
-        .column_sum_ready(column_sum_ready)
+        .out_column_sum_ready(column_sum_ready),
+		.Final_Vector_Sum(Final_Vector_Sum),
+		.array_processing_complete(array_processing_complete)
     );
 
     // Clock generation
@@ -65,10 +76,13 @@ module tb_column_adder_array;
 
     // Test sequence
     integer i, j;
+	
     initial begin
         clear = 1;
         input_valid = 0;
         data_in = 0;
+		
+		TB_DONE = 0;
 
         // Wait for reset deassertion
         #(2 * CLK_PERIOD);
@@ -76,42 +90,50 @@ module tb_column_adder_array;
 		
         // Apply 8 sequential inputs
         for (i = 0; i < NUM_SEQ_INPUTS; i = i + 1) begin
+		
+			//emulate delay of 33 clk cycles for T2B module output to become valid 
+			repeat(LAST_BIT_COUNT) @(posedge clk); // Wait for 32 clock cycles
+			//repeat(LAST_BIT_COUNT + 1) @(posedge clk);
+			
 			@(posedge clk);
-            input_valid = 1;
+            input_valid <= 1;
             for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
-                data_in[j] = test_data[i][j];
+                data_in[j] <= test_data[i][j];
             end
 			
             // #(CLK_PERIOD);
 			@(posedge clk);
-			input_valid = 0;
+			input_valid <= 0;
 			
-			// #(1 * CLK_PERIOD);
-			repeat(LAST_BIT_COUNT) @(posedge clk); // Wait for 32 clock cycles
         end
 
-		//test with extra input valids 
+		// Test robustness: extra input_valid pulses with no data_in change
 		@(posedge clk);
-		input_valid = 1;
+		input_valid <= 1;
 		@(posedge clk);		
-        input_valid = 0;
+        input_valid <= 0;
 		@(posedge clk);
-		input_valid = 1;
+		input_valid <= 1;
 		@(posedge clk);		
-        input_valid = 0;
+        input_valid <= 0;
 		
         // Wait to observe outputs
-        #(10 * CLK_PERIOD);
+        repeat(10) @(posedge clk);
 
+		TB_DONE = 1; 
+		
+		repeat(100) @(posedge clk);
+		
         $display("Final Column Sums:");
         for (j = 0; j < NUM_COLUMNS; j = j + 1) begin
-            $display("Column %0d: Sum = %0d, Ready = %b", j, column_sum[j], column_sum_ready[j]);
+            $display("Column %0d: Sum = %0d, Ready = %b", j, column_sum[j], column_sum_ready);
         end
 
         $finish;
     end
 
-    // Bit Counter for 0 to 32, increments on new input on posedge clk when input_valid is high
+    //Local TB Bit Counter for 0 to 32, starts incrementing on posedge clk when input_valid is high
+	// to keep track of ongoing bit count value in T2B module 
     integer iteration_bit_count;
     reg count_enable;
  

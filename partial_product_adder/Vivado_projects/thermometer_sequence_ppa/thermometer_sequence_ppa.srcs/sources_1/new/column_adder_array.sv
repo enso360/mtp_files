@@ -22,7 +22,8 @@
 module column_adder_array #(
     parameter INPUT_WIDTH = 6,
     parameter NUM_SEQ_INPUTS = 8,
-    parameter NUM_COLUMNS = 8
+    parameter NUM_COLUMNS = 8,
+	FINAL_VECTOR_SUM_WIDTH = 24
 )(
     input wire clk,
     input wire clear,
@@ -33,9 +34,41 @@ module column_adder_array #(
     
     // Packed arrays for outputs - NUM_COLUMNS x Sum Width 
     output wire signed [NUM_COLUMNS-1:0][(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum,
-    output wire [NUM_COLUMNS-1:0] column_sum_ready
+    output wire out_column_sum_ready,  //common signal column_sum_ready for all 8 adders 
+	
+	output wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] Final_Vector_Sum,
+    // Overall array ready signal
+    output reg array_processing_complete	
 );
+	
+	//state definition 
+	localparam IDLE  		= 2'b00,
+			   ADD   		= 2'b01,
+			   DONE 		= 2'b10,
+			   HOLD 		= 2'b11;
+    reg [1:0] state, next_state;
 
+	localparam COUNTER_WIDTH = $clog2(NUM_SEQ_INPUTS+1);
+	reg [COUNTER_WIDTH-1:0] iteration_count;  //seq input cycle counter
+
+	
+	//internal registers 
+	reg column_sum_ready;
+	assign out_column_sum_ready = column_sum_ready;
+
+	reg load_input;
+	reg enable_accumulation; 
+	reg first_accumulation; 
+	
+	wire w_load_input;
+	//load new input into register when input valid in IDLE and ADD states 
+	assign w_load_input = ((state == IDLE || state == ADD)  && input_valid);	
+	
+	//last input condition
+	wire w_last_iteration;
+	assign w_last_iteration = (state == ADD && (iteration_count == NUM_SEQ_INPUTS)); 
+
+	
     // Generate block for creating column adders
     genvar i;
     generate
@@ -46,21 +79,160 @@ module column_adder_array #(
             ) column_adder_inst (
                 .clk(clk),
                 .clear(clear),
-                .in(data_in[i]),
-                .input_valid(input_valid),
-                .column_sum(column_sum[i]),
-                .column_sum_ready(column_sum_ready[i])
+                .sequential_sum_in(data_in[i]),
+				.load_input(load_input),
+                .enable_accumulation(enable_accumulation),
+                .column_sum(column_sum[i])
             );
         end
     endgenerate
 
 
+	
+	// FSM Process 1: Wrapper State and data registers (sequential logic)
+	always @(posedge clk) begin 
+		if (clear) begin //synchronous clear 
+			state <= IDLE; 
+			iteration_count <= 0;
+			column_sum_ready <= 0;	
+			array_processing_complete <= 0;
+			enable_accumulation <= 0;
+			first_accumulation <= 0;
+		end else begin 
+			state <= next_state; //default state assignment 
+		
+			// Data path updates based on current state
+			case (state) 
+				IDLE: begin 
+					column_sum_ready <= 0;
+					iteration_count <= 0;
+					enable_accumulation <= 0;
+					first_accumulation <= 0;
+				end
+				
+				ADD: begin 
+					if (load_input) begin //only increment counter during input valid clk cycles 
+						iteration_count <= iteration_count + 1;
+						enable_accumulation <= 1;
+					end else begin 
+						enable_accumulation <= 0;
+					end 
+					
+					//special case to handle first accumulation 
+					if (!first_accumulation && (iteration_count == 0)) begin 
+						enable_accumulation <= 1;
+						first_accumulation <= 1;
+						iteration_count <= iteration_count + 1;
+					end else begin 
+						first_accumulation <= 0;
+					end 
+					
+					column_sum_ready <= 0;
+				end 
+				
+				DONE: begin
+					if (!column_sum_ready) begin 					
+						// iteration_count <= iteration_count + 1;
+						column_sum_ready <= 1;	
+						array_processing_complete <= 1;
+					end
+				end 
+				
+				HOLD: begin 
+					column_sum_ready <= 1;
+					array_processing_complete <= 1;
+				end 
+
+				default: begin 
+					column_sum_ready <= 0;
+					iteration_count <= 0;
+					array_processing_complete <= 0;
+					enable_accumulation <= 0;
+				end 
+			endcase 
+		end 
+	end 
+
+	// FSM Process 2: Wrapper Next state logic and Control signal generation (combinational logic)
+	always @(*) begin 
+		//default assignment
+		next_state = state; 
+		// load_input = 0;
+		// enable_accumulation = 0; 
+		// delayed_enable_accumulation = 0;
+		
+		case (state) 
+			IDLE: begin 
+				// delayed_enable_accumulation = 0;
+				//next state logic 
+				next_state = (input_valid) ? ADD : IDLE;
+				//control signal 
+				if (input_valid) begin
+					load_input = 1;
+					// enable_accumulation = 1;
+				end else begin 
+					load_input = 0;
+					// enable_accumulation = 0;
+				end 
+			end 
+				
+			ADD: begin 
+				//if last iteration move to DONE state 
+				next_state = (w_last_iteration) ? DONE : ADD;
+				//control signal 
+				if (input_valid) begin
+					load_input = 1;
+					// enable_accumulation = 1;
+				end else begin 
+					load_input = 0;
+					// enable_accumulation = 0;
+				end 
+				
+				// //delay add by 1 cycle 
+				// if (enable_accumulation) begin 
+					// delayed_enable_accumulation = 1;
+				// end else begin 
+					// delayed_enable_accumulation = 0;
+				// end 
+			end 
+			
+			DONE: begin 
+				next_state = (column_sum_ready)? HOLD : DONE;  
+				
+				load_input = 0;
+				// enable_accumulation = 0;
+				// //add for one last time 
+				// if (!column_sum_ready) begin 
+					// enable_accumulation = 1;
+				// end else begin 
+					// enable_accumulation = 0;
+				// end 
+			end 
+			
+			HOLD: begin 
+				// Stay in hold state until external clear applied 			
+				next_state = HOLD;  //HOLD to IDLE transition when clear = 1
+				load_input = 0;
+				// enable_accumulation = 0;				
+			end 
+			
+			default: begin 
+				next_state = IDLE;
+				load_input = 0;
+				// enable_accumulation = 0;				
+			end 
+		endcase 
+	end 
+	
+
+	/** Final Vector Merge Addition of all column sums **/
+
     // Internal parameter for output width
     localparam SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS;	
-	localparam SIGN_EXT_SHIFTED_SUM_WIDTH = SUM_WIDTH + 1 + NUM_COLUMNS;
+	localparam SIGN_EXT_SHIFTED_SUM_WIDTH = SUM_WIDTH + 1 + NUM_COLUMNS;  //24 bits 
 
 	// New output declaration
-	wire signed [NUM_COLUMNS-1:0][(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS + 1 + NUM_COLUMNS) - 1:0] Sign_Ext_and_Shifted_Col_Sum;
+	wire signed [NUM_COLUMNS-1:0][SIGN_EXT_SHIFTED_SUM_WIDTH - 1:0] Sign_Ext_and_Shifted_Col_Sum;  //24 bits 
 
 	// Generate block for sign extension and shifting
 	genvar j;
@@ -74,19 +246,15 @@ module column_adder_array #(
 		end
 	endgenerate
 
-	//Final Vector Merge addition 
-	// Declare Final_Vector_Sum with localparam
-	localparam FINAL_SUM_WIDTH = INPUT_WIDTH + 1 + NUM_SEQ_INPUTS + 1 + NUM_COLUMNS;
-	wire signed [FINAL_SUM_WIDTH - 1:0] Final_Vector_Sum;
 
+	// Create intermediate sum wires for the adder tree
+	wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] partial_sum [NUM_COLUMNS:0];
 	// Generate block for adding all Sign_Ext_and_Shifted_Col_Sum values
 	genvar k;
 	generate
-		// Create intermediate sum wires for the adder tree
-		wire signed [FINAL_SUM_WIDTH - 1:0] partial_sum [NUM_COLUMNS:0];
 		
 		// Initialize the first partial sum to zero
-		assign partial_sum[0] = {FINAL_SUM_WIDTH{1'b0}};
+		assign partial_sum[0] = {FINAL_VECTOR_SUM_WIDTH{1'b0}};
 		
 		// Add each Sign_Ext_and_Shifted_Col_Sum to the running sum
 		for (k = 0; k < NUM_COLUMNS; k = k + 1) begin : gen_accumulate
@@ -94,7 +262,8 @@ module column_adder_array #(
 		end
 		
 		// Final result
-		assign Final_Vector_Sum = partial_sum[NUM_COLUMNS];
+		assign Final_Vector_Sum = partial_sum[NUM_COLUMNS];  //final adder stage 
 	endgenerate
 
 endmodule
+
