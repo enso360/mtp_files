@@ -118,8 +118,14 @@ module tb_column_adder_array;
         input_valid <= 0;
 		
         // Wait to observe outputs
+        repeat(100) @(posedge clk);
+		
+		//Test clear again 
+		clear = 1;
+		repeat(1) @(posedge clk);
+		clear = 0; 
         repeat(10) @(posedge clk);
-
+		
 		TB_DONE = 1; 
 		
 		repeat(100) @(posedge clk);

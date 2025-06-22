@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="3000000fs"></ZoomEndTime>
-      <Cursor1Time time="2927984fs"></Cursor1Time>
+      <ZoomStartTime time="1500000fs"></ZoomStartTime>
+      <ZoomEndTime time="4500000fs"></ZoomEndTime>
+      <Cursor1Time time="3879592fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="292"></NameColumnWidth>
-      <ValueColumnWidth column_width="111"></ValueColumnWidth>
+      <ValueColumnWidth column_width="99"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="36" />
    <wvobject fp_name="/tb_column_adder_array/clk" type="logic">
@@ -27,6 +27,8 @@
    <wvobject fp_name="/tb_column_adder_array/clear" type="logic">
       <obj_property name="ElementShortName">clear</obj_property>
       <obj_property name="ObjectShortName">clear</obj_property>
+      <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_column_adder_array/data_in" type="array">
       <obj_property name="ElementShortName">data_in[7:0][5:0]</obj_property>
@@ -69,46 +71,6 @@
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[7]" type="array">
-         <obj_property name="ElementShortName">[7][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[7][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[6]" type="array">
-         <obj_property name="ElementShortName">[6][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[6][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[5]" type="array">
-         <obj_property name="ElementShortName">[5][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[5][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[4]" type="array">
-         <obj_property name="ElementShortName">[4][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[4][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[3]" type="array">
-         <obj_property name="ElementShortName">[3][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[2]" type="array">
-         <obj_property name="ElementShortName">[2][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[1]" type="array">
-         <obj_property name="ElementShortName">[1][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_column_adder_array/column_sum[0]" type="array">
-         <obj_property name="ElementShortName">[0][14:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][14:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_column_adder_array/column_sum[0]" type="array">
       <obj_property name="ElementShortName">[0][14:0]</obj_property>
