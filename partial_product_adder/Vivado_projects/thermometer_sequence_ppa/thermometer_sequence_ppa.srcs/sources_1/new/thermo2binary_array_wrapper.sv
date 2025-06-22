@@ -100,7 +100,7 @@ module thermo2binary_array_wrapper #(
             case (state)
                 IDLE: begin
                     bit_counter <= 0; // Reset counter when idle
-					// valid_out_reg <= 0;
+					valid_out_reg <= 0;
                 end
                 
                 START: begin
