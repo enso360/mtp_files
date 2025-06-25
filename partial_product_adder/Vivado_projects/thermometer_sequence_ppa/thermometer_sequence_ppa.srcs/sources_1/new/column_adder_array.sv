@@ -238,11 +238,20 @@ module column_adder_array #(
 	genvar j;
 	generate
 		for (j = 0; j < NUM_COLUMNS; j = j + 1) begin : gen_sign_ext_shift
-			assign Sign_Ext_and_Shifted_Col_Sum[j] = {
-				{(NUM_COLUMNS + 1 - j){column_sum[j][SUM_WIDTH-1]}},  // Sign extension
-				column_sum[j],                                         // Original value
-				{j{1'b0}}                                             // Zero padding (LSB)
-			};
+			if (j == 0) begin
+				//handle the special case of 0th column to avoid zero replication warning 
+				//since it doesn't need zero padding for shifting 
+				assign Sign_Ext_and_Shifted_Col_Sum[0] = {
+					{(NUM_COLUMNS + 1){column_sum[0][SUM_WIDTH-1]}},  // Sign extension
+					column_sum[0]                                     // Original value
+				};
+			end else begin 
+				assign Sign_Ext_and_Shifted_Col_Sum[j] = {
+					{(NUM_COLUMNS + 1 - j){column_sum[j][SUM_WIDTH-1]}},  // Sign extension
+					column_sum[j],                                         // Original value
+					{j{1'b0}}                                             // Zero padding (LSB)
+				};
+			end 
 		end
 	endgenerate
 
