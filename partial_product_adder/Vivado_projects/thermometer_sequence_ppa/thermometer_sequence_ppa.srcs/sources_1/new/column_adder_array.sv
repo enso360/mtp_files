@@ -256,22 +256,24 @@ module column_adder_array #(
 	endgenerate
 
 
-	// Create intermediate sum wires for the adder tree
-	wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] partial_sum [NUM_COLUMNS:0];
+	// Create intermediate sum wires for the partial sum Po to P7 of adder stage 
+	wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] w_partial_sum [NUM_COLUMNS-1:0];
+	
 	// Generate block for adding all Sign_Ext_and_Shifted_Col_Sum values
 	genvar k;
 	generate
-		
-		// Initialize the first partial sum to zero
-		assign partial_sum[0] = {FINAL_VECTOR_SUM_WIDTH{1'b0}};
-		
-		// Add each Sign_Ext_and_Shifted_Col_Sum to the running sum
 		for (k = 0; k < NUM_COLUMNS; k = k + 1) begin : gen_accumulate
-			assign partial_sum[k+1] = partial_sum[k] + Sign_Ext_and_Shifted_Col_Sum[k];
-		end
-		
-		// Final result
-		assign Final_Vector_Sum = partial_sum[NUM_COLUMNS];  //final adder stage 
+			if (k == 0) begin 
+				// Initialize the first partial sum with the first column value
+				assign w_partial_sum[0] = Sign_Ext_and_Shifted_Col_Sum[0]; //Po = Co 
+			end else begin 
+			// when k > 0, Accumulate: P[k] = C[k] + P[k-1]
+				assign w_partial_sum[k] = Sign_Ext_and_Shifted_Col_Sum[k] + w_partial_sum[k-1];
+			end	
+		end 
+
+		// Final result from last adder stage Final sum = P7 = P(NUM_COLUMNS-1) 
+		assign Final_Vector_Sum = w_partial_sum[NUM_COLUMNS - 1];		
 	endgenerate
 
 endmodule
