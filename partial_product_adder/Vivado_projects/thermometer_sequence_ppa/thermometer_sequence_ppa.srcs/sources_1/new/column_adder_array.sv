@@ -255,26 +255,72 @@ module column_adder_array #(
 		end
 	endgenerate
 
+	// // Carry Chain Adder logic 
+	// // Create intermediate sum wires for the partial sum Po to P7 of adder stage 
+	// wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] w_partial_sum [NUM_COLUMNS-1:0];
+	
+	// // Generate block for adding all Sign_Ext_and_Shifted_Col_Sum values
+	// genvar k;
+	// generate
+		// for (k = 0; k < NUM_COLUMNS; k = k + 1) begin : gen_accumulate
+			// if (k == 0) begin 
+				// // Initialize the first partial sum with the first column value
+				// assign w_partial_sum[0] = Sign_Ext_and_Shifted_Col_Sum[0]; //Po = Co 
+			// end else begin 
+			// // when k > 0, Accumulate: P[k] = C[k] + P[k-1]
+				// assign w_partial_sum[k] = Sign_Ext_and_Shifted_Col_Sum[k] + w_partial_sum[k-1];
+			// end	
+		// end 
 
+		// // Final result from last adder stage Final sum = P7 = P(NUM_COLUMNS-1) 
+		// assign Final_Vector_Sum = w_partial_sum[NUM_COLUMNS - 1];		
+	// endgenerate
+
+	//Balanced Tree Adder logic 
 	// Create intermediate sum wires for the partial sum Po to P7 of adder stage 
 	wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] w_partial_sum [NUM_COLUMNS-1:0];
 	
 	// Generate block for adding all Sign_Ext_and_Shifted_Col_Sum values
-	genvar k;
+	genvar k, l, m;
 	generate
-		for (k = 0; k < NUM_COLUMNS; k = k + 1) begin : gen_accumulate
-			if (k == 0) begin 
-				// Initialize the first partial sum with the first column value
-				assign w_partial_sum[0] = Sign_Ext_and_Shifted_Col_Sum[0]; //Po = Co 
-			end else begin 
-			// when k > 0, Accumulate: P[k] = C[k] + P[k-1]
-				assign w_partial_sum[k] = Sign_Ext_and_Shifted_Col_Sum[k] + w_partial_sum[k-1];
-			end	
+
+		// Stage 1: Add adjacent column pairs
+		for (k = 0; k < NUM_COLUMNS/2; k = k + 1) begin : gen_accumulate_stage1
+			//Add all shifted column sums 0 to 7 in 1st tree adder stage : k < 4, k = 0, 1, 2, 3 
+			assign w_partial_sum[k] = Sign_Ext_and_Shifted_Col_Sum[2*k] + Sign_Ext_and_Shifted_Col_Sum[2*k + 1];
 		end 
 
-		// Final result from last adder stage Final sum = P7 = P(NUM_COLUMNS-1) 
-		assign Final_Vector_Sum = w_partial_sum[NUM_COLUMNS - 1];		
+		// Stage 2: Add partial sums recursively
+		//continue L from where K ended, basically k, l = 4, 5, 6 
+		for (l = NUM_COLUMNS/2; l < NUM_COLUMNS - 1; l = l + 1) begin : gen_accumulate_stage2 
+
+			// // use another local index m = (l - NUM_COLUMNS/2),  m = 0, 1, 2 
+			// localparam int m = l - (NUM_COLUMNS/2); 
+			// // P(l) = P(2m) + P(2m + 1) 
+			// assign w_partial_sum[l] = w_partial_sum[2*m] + w_partial_sum[2*m + 1];	
+			
+			// k > 4, k = 4, 5, 6 
+			assign w_partial_sum[l] = w_partial_sum[2*(l - NUM_COLUMNS/2)] + w_partial_sum[2*(l - NUM_COLUMNS/2) + 1];
+		end 
+
+		// Final result from last adder stage Final sum = P6 = P(NUM_COLUMNS-2) 
+		assign Final_Vector_Sum = w_partial_sum[NUM_COLUMNS - 2];  //works and checked upto N = 32 
 	endgenerate
 
+	// Ensure the NUM_COLUMNS is a power of 2 and positive 
+	// powers of 2 have only one bit set
+    // compile-time parameter validations
+    generate
+        if ((NUM_COLUMNS <= 0) || ((NUM_COLUMNS & (NUM_COLUMNS - 1)) != 0)) begin : gen_invalid_columns
+			// Synthesis tools will throw an error during elaboration here
+			initial begin
+                $fatal(1, "NUM_COLUMNS = %0d must be a positive power of 2. Valid values: 1, 2, 4, 8, 16, 32, ...", NUM_COLUMNS);
+				$finish;
+			end 
+		end else begin : gen_valid_columns
+			// Valid NUM_COLUMNS — normal hardware generation continues
+		end
+	endgenerate
+	
 endmodule
 
