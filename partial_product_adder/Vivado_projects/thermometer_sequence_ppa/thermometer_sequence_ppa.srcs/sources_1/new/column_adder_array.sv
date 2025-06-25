@@ -36,6 +36,7 @@ module column_adder_array #(
     output wire signed [NUM_COLUMNS-1:0][(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum,
     output wire out_column_sum_ready,  //common signal column_sum_ready for all 8 adders 
 	
+	(* use_dsp = "no", use_carry_chain = "no" *)
 	output wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] Final_Vector_Sum,
     // Overall array ready signal
     output reg array_processing_complete	
@@ -255,6 +256,9 @@ module column_adder_array #(
 		end
 	endgenerate
 
+	(* use_dsp = "no", use_carry_chain = "no" *)
+	(* keep = "true", dont_touch = "true" *)
+
 	// // Carry Chain Adder logic 
 	// // Create intermediate sum wires for the partial sum Po to P7 of adder stage 
 	// wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] w_partial_sum [NUM_COLUMNS-1:0];
@@ -276,6 +280,10 @@ module column_adder_array #(
 		// assign Final_Vector_Sum = w_partial_sum[NUM_COLUMNS - 1];		
 	// endgenerate
 
+
+	(* use_dsp = "no", use_carry_chain = "no" *)
+	(* keep = "true", dont_touch = "true" *)
+	
 	//Balanced Tree Adder logic 
 	// Create intermediate sum wires for the partial sum Po to P7 of adder stage 
 	wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] w_partial_sum [NUM_COLUMNS-1:0];
@@ -287,6 +295,8 @@ module column_adder_array #(
 		// Stage 1: Add adjacent column pairs
 		for (k = 0; k < NUM_COLUMNS/2; k = k + 1) begin : gen_accumulate_stage1
 			//Add all shifted column sums 0 to 7 in 1st tree adder stage : k < 4, k = 0, 1, 2, 3 
+			(* use_dsp = "no", use_carry_chain = "no" *)
+			(* keep = "true", dont_touch = "true" *)
 			assign w_partial_sum[k] = Sign_Ext_and_Shifted_Col_Sum[2*k] + Sign_Ext_and_Shifted_Col_Sum[2*k + 1];
 		end 
 
@@ -300,6 +310,8 @@ module column_adder_array #(
 			// assign w_partial_sum[l] = w_partial_sum[2*m] + w_partial_sum[2*m + 1];	
 			
 			// k > 4, k = 4, 5, 6 
+			(* use_dsp = "no", use_carry_chain = "no" *)
+			(* keep = "true", dont_touch = "true" *)
 			assign w_partial_sum[l] = w_partial_sum[2*(l - NUM_COLUMNS/2)] + w_partial_sum[2*(l - NUM_COLUMNS/2) + 1];
 		end 
 
