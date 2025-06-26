@@ -160,7 +160,12 @@ module tb_column_processing_unit_top();
         
         // Send the same pattern (+1) to all columns for NUM_SEQ_INPUTS iterations
         repeat(NUM_SEQ_INPUTS) begin
-            send_pattern_to_all_columns(33'b00000000000000000000000000000001_1, "Positive 1");
+            // send_pattern_to_all_columns(33'b00000000000000000000000000000001_1, "Positive 1");
+			// send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
+			// send_pattern_to_all_columns(33'b00111111111111111111111111111111_0, "Negative 2");  //-2
+			// send_pattern_to_all_columns(33'b01111111111111111111111111111111_1, "Positive 31"); // +31
+			send_pattern_to_all_columns(33'b00000000000000000000000000000000_0, "Negative 32");  // -32
+			
             #20; // Small delay between iterations
         end
         
