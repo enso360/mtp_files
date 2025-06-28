@@ -31,6 +31,7 @@ module column_processing_unit_top #(
     input wire clk,
     input wire reset,
     input wire clear,
+	input wire global_accumulation_enable,  //master enable 
 	input wire start_conversion, // Thermometer to binary conversion control
     // Serial thermometer code inputs (one bit per column per clock cycle)
     input wire [NUM_COLUMNS-1:0] serial_thermo_in,
@@ -44,6 +45,9 @@ module column_processing_unit_top #(
     output wire processing_complete
 ); 
 
+	wire w_start_conversion_top; 
+	
+	
     // Internal signals connecting the two wrapper modules
     wire signed [NUM_COLUMNS-1:0][T2B_OUT_WIDTH - 1:0] t2b_results;
     wire t2b_valid;
@@ -56,7 +60,7 @@ module column_processing_unit_top #(
     ) thermo2binary_wrapper_inst (
         .clk(clk),
         .reset(reset),
-        .start(start_conversion),
+        .start(w_start_conversion_top),
         .serial_in_array(serial_thermo_in),
         .signed_result_out_array(t2b_results),
         .valid_out(t2b_valid)
@@ -85,6 +89,8 @@ module column_processing_unit_top #(
 
     // Output assignments
     assign conversion_valid = t2b_valid;
+	// Enable start_conversion only when global accumulation is active
+	assign w_start_conversion_top = global_accumulation_enable && start_conversion;
 
 endmodule
 

@@ -33,6 +33,7 @@ module tb_column_processing_unit_top();
     reg clk;
     reg reset;
     reg clear;
+	reg global_accumulation_enable;
     reg start_conversion;
     reg [NUM_COLUMNS-1:0] serial_thermo_in;
     
@@ -58,6 +59,7 @@ module tb_column_processing_unit_top();
         .clk(clk),
         .reset(reset),
         .clear(clear),
+		.global_accumulation_enable(global_accumulation_enable),
         .start_conversion(start_conversion),
         .serial_thermo_in(serial_thermo_in),
         .column_sum(column_sum),
@@ -78,6 +80,13 @@ module tb_column_processing_unit_top();
         input [127:0] pattern_name; // Increased width for longer names
         integer i, j;
         begin
+		
+			// // Check and inform if previous results have been cleared 
+			// if (!global_accumulation_enable) begin
+				// $display("Waiting for 'global_accumulation_enable == 1' before beginning new. Please ensure previous processing is cleared and global_accumulation_enable enabled.");
+				// wait(global_accumulation_enable);
+			// end
+		
             $display("Iteration %0d: Sending pattern %s: %b", iteration_count, pattern_name, pattern);
             
             @(posedge clk);
@@ -105,9 +114,9 @@ module tb_column_processing_unit_top();
                 serial_thermo_in[j] <= 0;
             end
             
-            // Wait for conversion to complete
-            wait(conversion_valid);
-            $display("Conversion %0d completed. T2B results ready.", iteration_count);
+            // // Wait for conversion to complete
+            // wait(conversion_valid);
+            // $display("Conversion %0d completed. T2B results ready.", iteration_count);
             
             // Wait one more clock cycle to ensure data is stable
             @(posedge clk);
@@ -142,6 +151,7 @@ module tb_column_processing_unit_top();
         clk = 0;
         reset = 1;
         clear = 1;
+		global_accumulation_enable = 0;
         start_conversion = 0;
         serial_thermo_in = 0;
         iteration_count = 0;
@@ -152,7 +162,8 @@ module tb_column_processing_unit_top();
         repeat(2) @(posedge clk);
         clear = 0;
         repeat(2) @(posedge clk);
-        
+        global_accumulation_enable = 1;
+		
         $display("Starting Column Processing Unit Top Testbench");
         $display("SERIAL_INPUT_LENGTH = %0d, T2B_OUT_WIDTH = %0d", SERIAL_INPUT_LENGTH, T2B_OUT_WIDTH);
         $display("NUM_COLUMNS = %0d, NUM_SEQ_INPUTS = %0d", NUM_COLUMNS, NUM_SEQ_INPUTS);
@@ -160,30 +171,51 @@ module tb_column_processing_unit_top();
         
         // Send the same pattern (+1) to all columns for NUM_SEQ_INPUTS iterations
         repeat(NUM_SEQ_INPUTS) begin
-            // send_pattern_to_all_columns(33'b00000000000000000000000000000001_1, "Positive 1");
+            send_pattern_to_all_columns(33'b00000000000000000000000000000001_1, "Positive 1");
 			// send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
 			// send_pattern_to_all_columns(33'b00111111111111111111111111111111_0, "Negative 2");  //-2
 			// send_pattern_to_all_columns(33'b01111111111111111111111111111111_1, "Positive 31"); // +31
-			send_pattern_to_all_columns(33'b00000000000000000000000000000000_0, "Negative 32");  // -32
+			// send_pattern_to_all_columns(33'b00000000000000000000000000000000_0, "Negative 32");  // -32
 			
             #20; // Small delay between iterations
         end
         
         // Wait for all processing to complete
         wait_for_processing_complete();
+		global_accumulation_enable = 0;
+		
+		//additional inputs again 
+		#500;
+		send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
+		#500;
         
         // Additional delay for observation
         #100;
         
         // Test clear functionality
         $display("Testing clear functionality...");
+        // Reset sequence
+        reset = 1;
         clear = 1;
+		global_accumulation_enable = 0;
+        start_conversion = 0;
+        serial_thermo_in = 0;
+        repeat(3) @(posedge clk);
+        reset = 0;
         repeat(2) @(posedge clk);
         clear = 0;
         repeat(2) @(posedge clk);
         
         $display("After clear - Column Sum Ready: %b", column_sum_ready);
         $display("After clear - Processing Complete: %b", processing_complete);
+		
+		#100;
+		global_accumulation_enable = 1; 
+		
+		//additional inputs again 
+		#500;
+		send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
+		#500;		
         
         #100;
         TB_DONE = 1;
