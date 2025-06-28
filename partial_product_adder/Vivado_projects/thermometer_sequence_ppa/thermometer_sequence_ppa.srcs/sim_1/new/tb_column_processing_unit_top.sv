@@ -29,6 +29,8 @@ module tb_column_processing_unit_top();
     parameter FINAL_VECTOR_SUM_WIDTH = 24;
     parameter CLK_PERIOD = 10;
     
+	localparam MAX_THERMO_BITS = SERIAL_INPUT_LENGTH;  //33 including inverted sign bit 
+	
     // Testbench signals
     reg clk;
     reg reset;
@@ -36,6 +38,7 @@ module tb_column_processing_unit_top();
 	reg global_accumulation_enable;
     reg start_conversion;
     reg [NUM_COLUMNS-1:0] serial_thermo_in;
+	reg [MAX_THERMO_BITS - 1: 0] tb_thermo_code; 
     
     // Outputs
     wire signed [NUM_COLUMNS-1:0][(T2B_OUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum;
@@ -145,6 +148,41 @@ module tb_column_processing_unit_top();
         end
     endtask
     
+	function automatic [MAX_THERMO_BITS - 1 : 0] generate_thermo_bits;
+		input integer value;  //input argument receiver 
+		integer i; 
+		integer abs_val;
+		integer num_ones, num_zeros;
+		
+		begin 
+			generate_thermo_bits = '0; //initialize all bits to 0
+			i = 0;
+			num_ones = 0; 
+			num_zeros = 0;
+			
+			// Set bit 0 as inverted sign bit
+			generate_thermo_bits[0] = (value >= 0) ? 1'b1 : 1'b0;
+			
+			if (value >= 0) begin 
+				//thermo code for positive value 
+				num_ones = value; 
+				num_zeros = (MAX_THERMO_BITS - 1) - value; //32 - value 
+			end else if (value < 0) begin 
+				abs_val = -value;
+				//thermo code for negative value 
+				num_zeros = abs_val; // take mod(value) since value is negative 				
+				num_ones = (MAX_THERMO_BITS - 1) - abs_val; // 32 - mod(value)=
+			end 
+	
+			// num of 1s from bit 1, remaning 0s upto bit 32 
+			for (i = 1; i <= MAX_THERMO_BITS-1; i = i + 1) begin 
+				generate_thermo_bits[i] = (i <= num_ones) ? 1 : 0;
+			end 	
+			
+		end 
+	endfunction 
+
+
     // Main test sequence
     initial begin
         // Initialize signals
@@ -155,6 +193,7 @@ module tb_column_processing_unit_top();
         start_conversion = 0;
         serial_thermo_in = 0;
         iteration_count = 0;
+		tb_thermo_code = 0;
         
         // Reset sequence
         repeat(3) @(posedge clk);
@@ -171,12 +210,18 @@ module tb_column_processing_unit_top();
         
         // Send the same pattern (+1) to all columns for NUM_SEQ_INPUTS iterations
         repeat(NUM_SEQ_INPUTS) begin
-            send_pattern_to_all_columns(33'b00000000000000000000000000000001_1, "Positive 1");
+            // send_pattern_to_all_columns(33'b00000000000000000000000000000001_1, "Positive 1");
 			// send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
 			// send_pattern_to_all_columns(33'b00111111111111111111111111111111_0, "Negative 2");  //-2
 			// send_pattern_to_all_columns(33'b01111111111111111111111111111111_1, "Positive 31"); // +31
+			// send_pattern_to_all_columns(33'b00000000000000000000000000000001_0, "Negative 31"); // -31
 			// send_pattern_to_all_columns(33'b00000000000000000000000000000000_0, "Negative 32");  // -32
-			
+			// send_pattern_to_all_columns(generate_thermo_bits(1), "Test input");
+			// send_pattern_to_all_columns(generate_thermo_bits(-31), "Test input");
+			// tb_thermo_code = generate_thermo_bits(-32);
+			// tb_thermo_code = generate_thermo_bits(30);
+			tb_thermo_code = generate_thermo_bits(15);
+			send_pattern_to_all_columns(tb_thermo_code, "Test input");
             #20; // Small delay between iterations
         end
         
@@ -186,7 +231,7 @@ module tb_column_processing_unit_top();
 		
 		//additional inputs again 
 		#500;
-		send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
+		send_pattern_to_all_columns(generate_thermo_bits(-2), "Test input +2");
 		#500;
         
         // Additional delay for observation
@@ -214,7 +259,7 @@ module tb_column_processing_unit_top();
 		
 		//additional inputs again 
 		#500;
-		send_pattern_to_all_columns(33'b00000000000000000000000000000011_1, "Test input +2");
+		send_pattern_to_all_columns(generate_thermo_bits(1), "Test input +1");
 		#500;		
         
         #100;
