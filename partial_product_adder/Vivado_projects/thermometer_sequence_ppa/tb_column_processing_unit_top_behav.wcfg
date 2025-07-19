@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1052078fs"></ZoomStartTime>
-      <ZoomEndTime time="2600079fs"></ZoomEndTime>
-      <Cursor1Time time="1439078fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="6205001fs"></ZoomEndTime>
+      <Cursor1Time time="4072780fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="225"></NameColumnWidth>
+      <NameColumnWidth column_width="219"></NameColumnWidth>
       <ValueColumnWidth column_width="88"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="37" />
+   <WVObjectSize size="24" />
    <wvobject fp_name="/tb_column_processing_unit_top/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -66,13 +66,6 @@
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/t2b_results" type="array">
-      <obj_property name="ElementShortName">t2b_results[7:0][5:0]</obj_property>
-      <obj_property name="ObjectShortName">t2b_results[7:0][5:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#FFA500</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_column_processing_unit_top/column_sum" type="array">
       <obj_property name="ElementShortName">column_sum[7:0][14:0]</obj_property>
       <obj_property name="ObjectShortName">column_sum[7:0][14:0]</obj_property>
@@ -94,14 +87,6 @@
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/valid_out" type="logic">
-      <obj_property name="ElementShortName">valid_out</obj_property>
-      <obj_property name="ObjectShortName">valid_out</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/valid_out_reg" type="logic">
-      <obj_property name="ElementShortName">valid_out_reg</obj_property>
-      <obj_property name="ObjectShortName">valid_out_reg</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_column_processing_unit_top/column_sum_ready" type="logic">
       <obj_property name="ElementShortName">column_sum_ready</obj_property>
       <obj_property name="ObjectShortName">column_sum_ready</obj_property>
@@ -114,65 +99,6 @@
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/capture_sign" type="logic">
-      <obj_property name="ElementShortName">capture_sign</obj_property>
-      <obj_property name="ObjectShortName">capture_sign</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/add_enable" type="logic">
-      <obj_property name="ElementShortName">add_enable</obj_property>
-      <obj_property name="ObjectShortName">add_enable</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/latch_data" type="logic">
-      <obj_property name="ElementShortName">latch_data</obj_property>
-      <obj_property name="ObjectShortName">latch_data</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/w_load_input" type="logic">
-      <obj_property name="ElementShortName">w_load_input</obj_property>
-      <obj_property name="ObjectShortName">w_load_input</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/load_input" type="logic">
-      <obj_property name="ElementShortName">load_input</obj_property>
-      <obj_property name="ObjectShortName">load_input</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/enable_accumulation" type="logic">
-      <obj_property name="ElementShortName">enable_accumulation</obj_property>
-      <obj_property name="ObjectShortName">enable_accumulation</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/first_accumulation" type="logic">
-      <obj_property name="ElementShortName">first_accumulation</obj_property>
-      <obj_property name="ObjectShortName">first_accumulation</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/w_last_iteration" type="logic">
-      <obj_property name="ElementShortName">w_last_iteration</obj_property>
-      <obj_property name="ObjectShortName">w_last_iteration</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/iteration_count" type="array">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">iteration_count[3:0]</obj_property>
-      <obj_property name="ObjectShortName">iteration_count[3:0]</obj_property>
-      <obj_property name="label">iteration_count[3:0] Col Adder</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/bit_counter" type="array">
-      <obj_property name="ElementShortName">bit_counter[6:0]</obj_property>
-      <obj_property name="ObjectShortName">bit_counter[6:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/thermo2binary_wrapper_inst/state" type="array">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">state[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state[1:0]</obj_property>
-      <obj_property name="label">state[1:0] T2B</obj_property>
-      <obj_property name="CustomSignalColor">#E0FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_adder_array_inst/state" type="array">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">state[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state[1:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="label">state[1:0] Col Adder</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_column_processing_unit_top/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -181,6 +107,22 @@
       <obj_property name="ElementShortName">TB_DONE</obj_property>
       <obj_property name="ObjectShortName">TB_DONE</obj_property>
       <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_processing_unit_inst/thermo2binary_wrapper_inst/state" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+      <obj_property name="label">t2b_state[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top/dut/column_processing_unit_inst/column_adder_array_inst/state" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+      <obj_property name="label">col_adder_state[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_column_processing_unit_top/iteration_count" type="array">
