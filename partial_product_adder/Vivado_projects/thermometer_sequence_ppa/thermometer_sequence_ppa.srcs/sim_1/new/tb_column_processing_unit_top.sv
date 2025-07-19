@@ -220,7 +220,7 @@ module tb_column_processing_unit_top();
 			// send_pattern_to_all_columns(generate_thermo_bits(-31), "Test input");
 			// tb_thermo_code = generate_thermo_bits(-32);
 			// tb_thermo_code = generate_thermo_bits(30);
-			tb_thermo_code = generate_thermo_bits(15);
+			tb_thermo_code = generate_thermo_bits(15);  //255 * 255 * 15 = 975375
 			send_pattern_to_all_columns(tb_thermo_code, "Test input");
             #20; // Small delay between iterations
         end

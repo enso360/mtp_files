@@ -54,8 +54,8 @@ module column_adder #(
 	
 	//add extended_input to MSBs of column_sum reg  
 	//sliced addition //synthesize 2 input 7 bit comb adder
-	(* use_dsp = "no", use_carry_chain = "no" *)
-	(* keep = "true", dont_touch = "true" *)
+	// (* use_dsp = "no", use_carry_chain = "no" *)
+	// (* keep = "true", dont_touch = "true" *)
 	assign updated_sum_higher_bits = sum_higher_bits + extended_input;
 	// //Continuous assignment with ternary
 	// assign updated_sum_higher_bits = enable_addition ? (sum_higher_bits + extended_input) : sum_higher_bits;

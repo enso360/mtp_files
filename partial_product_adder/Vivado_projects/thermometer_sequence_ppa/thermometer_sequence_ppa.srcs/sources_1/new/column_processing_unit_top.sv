@@ -66,8 +66,8 @@ module column_processing_unit_top #(
         .valid_out(t2b_valid)
     );
 
-	(* use_dsp = "no", use_carry_chain = "no" *)
-	(* keep = "true", dont_touch = "true" *)    
+	// (* use_dsp = "no", use_carry_chain = "no" *)
+	// (* keep = "true", dont_touch = "true" *)    
     // Instantiate column adder array
     column_adder_array #(
         .INPUT_WIDTH(T2B_OUT_WIDTH),
