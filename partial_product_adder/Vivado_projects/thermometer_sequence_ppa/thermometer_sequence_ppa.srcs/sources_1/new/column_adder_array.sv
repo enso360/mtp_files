@@ -24,7 +24,7 @@ module column_adder_array #(
     parameter NUM_SEQ_INPUTS = 8,
     parameter NUM_COLUMNS = 8,
 	parameter COLUMN_SUM_WIDTH = 15,
-	FINAL_VECTOR_SUM_WIDTH = 24
+	parameter FINAL_VECTOR_SUM_WIDTH = 24
 )(
     input wire clk,
     input wire clear,

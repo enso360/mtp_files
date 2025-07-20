@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_column_processing_unit_top_32_units_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_column_processing_unit_top_32_units" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="7530001fs"></ZoomEndTime>
+      <Cursor1Time time="4290000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="248"></NameColumnWidth>
+      <ValueColumnWidth column_width="107"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="23" />
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/clear" type="logic">
+      <obj_property name="ElementShortName">clear</obj_property>
+      <obj_property name="ObjectShortName">clear</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/global_accumulation_enable" type="logic">
+      <obj_property name="ElementShortName">global_accumulation_enable</obj_property>
+      <obj_property name="ObjectShortName">global_accumulation_enable</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/start_conversion" type="logic">
+      <obj_property name="ElementShortName">start_conversion</obj_property>
+      <obj_property name="ObjectShortName">start_conversion</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/serial_thermo_in" type="array">
+      <obj_property name="ElementShortName">serial_thermo_in[31:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">serial_thermo_in[31:0][7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/column_sum" type="array">
+      <obj_property name="ElementShortName">column_sum[31:0][7:0][14:0]</obj_property>
+      <obj_property name="ObjectShortName">column_sum[31:0][7:0][14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum" type="array">
+      <obj_property name="ElementShortName">final_vector_sum[31:0][23:0]</obj_property>
+      <obj_property name="ObjectShortName">final_vector_sum[31:0][23:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[31]" type="array">
+         <obj_property name="ElementShortName">[31][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[31][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[30]" type="array">
+         <obj_property name="ElementShortName">[30][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[30][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[29]" type="array">
+         <obj_property name="ElementShortName">[29][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[29][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[28]" type="array">
+         <obj_property name="ElementShortName">[28][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[28][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[27]" type="array">
+         <obj_property name="ElementShortName">[27][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[27][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[26]" type="array">
+         <obj_property name="ElementShortName">[26][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[26][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[25]" type="array">
+         <obj_property name="ElementShortName">[25][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[25][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[24]" type="array">
+         <obj_property name="ElementShortName">[24][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[24][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[23]" type="array">
+         <obj_property name="ElementShortName">[23][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[23][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[22]" type="array">
+         <obj_property name="ElementShortName">[22][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[22][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[21]" type="array">
+         <obj_property name="ElementShortName">[21][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[21][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[20]" type="array">
+         <obj_property name="ElementShortName">[20][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[20][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[19]" type="array">
+         <obj_property name="ElementShortName">[19][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[19][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[18]" type="array">
+         <obj_property name="ElementShortName">[18][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[18][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[17]" type="array">
+         <obj_property name="ElementShortName">[17][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[17][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[16]" type="array">
+         <obj_property name="ElementShortName">[16][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[16][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[15]" type="array">
+         <obj_property name="ElementShortName">[15][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[15][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[14]" type="array">
+         <obj_property name="ElementShortName">[14][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[14][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[13]" type="array">
+         <obj_property name="ElementShortName">[13][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[13][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[12]" type="array">
+         <obj_property name="ElementShortName">[12][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[12][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[11]" type="array">
+         <obj_property name="ElementShortName">[11][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[11][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[10]" type="array">
+         <obj_property name="ElementShortName">[10][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[10][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[9]" type="array">
+         <obj_property name="ElementShortName">[9][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[8]" type="array">
+         <obj_property name="ElementShortName">[8][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[7]" type="array">
+         <obj_property name="ElementShortName">[7][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[6]" type="array">
+         <obj_property name="ElementShortName">[6][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[5]" type="array">
+         <obj_property name="ElementShortName">[5][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[4]" type="array">
+         <obj_property name="ElementShortName">[4][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[3]" type="array">
+         <obj_property name="ElementShortName">[3][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[2]" type="array">
+         <obj_property name="ElementShortName">[2][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[1]" type="array">
+         <obj_property name="ElementShortName">[1][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_column_processing_unit_top_32_units/final_vector_sum[0]" type="array">
+         <obj_property name="ElementShortName">[0][23:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][23:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/conversion_valid" type="array">
+      <obj_property name="ElementShortName">conversion_valid[31:0]</obj_property>
+      <obj_property name="ObjectShortName">conversion_valid[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/column_sum_ready" type="array">
+      <obj_property name="ElementShortName">column_sum_ready[31:0]</obj_property>
+      <obj_property name="ObjectShortName">column_sum_ready[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/processing_complete" type="array">
+      <obj_property name="ElementShortName">processing_complete[31:0]</obj_property>
+      <obj_property name="ObjectShortName">processing_complete[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/tb_thermo_code" type="array">
+      <obj_property name="ElementShortName">tb_thermo_code[32:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_thermo_code[32:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/TB_DONE" type="logic">
+      <obj_property name="ElementShortName">TB_DONE</obj_property>
+      <obj_property name="ObjectShortName">TB_DONE</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/iteration_count" type="array">
+      <obj_property name="ElementShortName">iteration_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">iteration_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/NUM_UNITS" type="array">
+      <obj_property name="ElementShortName">NUM_UNITS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_UNITS[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/SERIAL_INPUT_LENGTH" type="array">
+      <obj_property name="ElementShortName">SERIAL_INPUT_LENGTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">SERIAL_INPUT_LENGTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/T2B_OUT_WIDTH" type="array">
+      <obj_property name="ElementShortName">T2B_OUT_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">T2B_OUT_WIDTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/NUM_COLUMNS" type="array">
+      <obj_property name="ElementShortName">NUM_COLUMNS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_COLUMNS[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/NUM_SEQ_INPUTS" type="array">
+      <obj_property name="ElementShortName">NUM_SEQ_INPUTS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_SEQ_INPUTS[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/COLUMN_SUM_WIDTH" type="array">
+      <obj_property name="ElementShortName">COLUMN_SUM_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">COLUMN_SUM_WIDTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/FINAL_VECTOR_SUM_WIDTH" type="array">
+      <obj_property name="ElementShortName">FINAL_VECTOR_SUM_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FINAL_VECTOR_SUM_WIDTH[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/CLK_PERIOD" type="array">
+      <obj_property name="ElementShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_column_processing_unit_top_32_units/MAX_THERMO_BITS" type="array">
+      <obj_property name="ElementShortName">MAX_THERMO_BITS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MAX_THERMO_BITS[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
