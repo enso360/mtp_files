@@ -23,10 +23,12 @@
 
 //top level module 
 module column_processing_unit_top #(
+	parameter NUM_UNITS = 32,
     parameter SERIAL_INPUT_LENGTH = 33,
     parameter T2B_OUT_WIDTH = 6,
     parameter NUM_COLUMNS = 8,
     parameter NUM_SEQ_INPUTS = 8,
+	parameter COLUMN_SUM_WIDTH = 15,  //15
     parameter FINAL_VECTOR_SUM_WIDTH = 24
 )(
     input wire clk,
@@ -37,7 +39,7 @@ module column_processing_unit_top #(
     // Serial thermometer code inputs (one bit per column per clock cycle)
     input wire [NUM_COLUMNS-1:0] serial_thermo_in,
 	// Final outputs
-    output wire signed [NUM_COLUMNS-1:0][(T2B_OUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum,
+    output wire signed [NUM_COLUMNS-1:0][COLUMN_SUM_WIDTH - 1:0] column_sum,
     output wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] final_vector_sum,
 	
     // Status outputs
@@ -58,6 +60,7 @@ module column_processing_unit_top #(
 		.T2B_OUT_WIDTH(T2B_OUT_WIDTH),
 		.NUM_COLUMNS(NUM_COLUMNS),
 		.NUM_SEQ_INPUTS(NUM_SEQ_INPUTS),
+		.COLUMN_SUM_WIDTH(COLUMN_SUM_WIDTH),
 		.FINAL_VECTOR_SUM_WIDTH(FINAL_VECTOR_SUM_WIDTH)
 	) column_processing_unit_inst (
 		.clk(clk),
@@ -82,6 +85,7 @@ module column_processing_unit #(
     parameter T2B_OUT_WIDTH = 6,
     parameter NUM_COLUMNS = 8,
     parameter NUM_SEQ_INPUTS = 8,
+	parameter COLUMN_SUM_WIDTH = 15,
     parameter FINAL_VECTOR_SUM_WIDTH = 24
 )(
     input wire clk,
@@ -91,7 +95,7 @@ module column_processing_unit #(
     // Serial thermometer code inputs (one bit per column per clock cycle)
     input wire [NUM_COLUMNS-1:0] serial_thermo_in,
 	// Final outputs
-    output wire signed [NUM_COLUMNS-1:0][(T2B_OUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum,
+    output wire signed [NUM_COLUMNS-1:0][COLUMN_SUM_WIDTH - 1:0] column_sum,
     output wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] final_vector_sum,
 	
     // Status outputs
@@ -128,6 +132,7 @@ module column_processing_unit #(
         .INPUT_WIDTH(T2B_OUT_WIDTH),
         .NUM_SEQ_INPUTS(NUM_SEQ_INPUTS),
         .NUM_COLUMNS(NUM_COLUMNS),
+		.COLUMN_SUM_WIDTH(COLUMN_SUM_WIDTH),
         .FINAL_VECTOR_SUM_WIDTH(FINAL_VECTOR_SUM_WIDTH)
     ) column_adder_array_inst (
         .clk(clk),

@@ -23,6 +23,7 @@ module column_adder_array #(
     parameter INPUT_WIDTH = 6,
     parameter NUM_SEQ_INPUTS = 8,
     parameter NUM_COLUMNS = 8,
+	parameter COLUMN_SUM_WIDTH = 15,
 	FINAL_VECTOR_SUM_WIDTH = 24
 )(
     input wire clk,
@@ -33,7 +34,7 @@ module column_adder_array #(
     input wire signed [NUM_COLUMNS-1:0][INPUT_WIDTH-1:0] data_in,
     
     // Packed arrays for outputs - NUM_COLUMNS x Sum Width 
-    output wire signed [NUM_COLUMNS-1:0][(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum,
+    output wire signed [NUM_COLUMNS-1:0][COLUMN_SUM_WIDTH - 1:0] column_sum,
     output wire out_column_sum_ready,  //common signal column_sum_ready for all 8 adders 
 	
 	// (* use_dsp = "no", use_carry_chain = "no" *)
@@ -76,7 +77,8 @@ module column_adder_array #(
         for (i = 0; i < NUM_COLUMNS; i = i + 1) begin : gen_column_adders
             column_adder #(
                 .INPUT_WIDTH(INPUT_WIDTH),
-                .NUM_SEQ_INPUTS(NUM_SEQ_INPUTS)
+                .NUM_SEQ_INPUTS(NUM_SEQ_INPUTS),
+				.COLUMN_SUM_WIDTH(COLUMN_SUM_WIDTH)
             ) column_adder_inst (
                 .clk(clk),
                 .clear(clear),

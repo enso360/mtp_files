@@ -21,14 +21,15 @@
 
 module column_adder #(
     parameter INPUT_WIDTH = 6,
-    parameter NUM_SEQ_INPUTS = 8
+    parameter NUM_SEQ_INPUTS = 8,
+	parameter COLUMN_SUM_WIDTH = 15
 )(
     input clk,
     input clear,
     input signed [INPUT_WIDTH-1:0] sequential_sum_in,    // input port
 	input load_input,
     input enable_accumulation,
-    output reg signed [(INPUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum   //signed 7b addition + 8 bit ASR >>>
+    output reg signed [COLUMN_SUM_WIDTH - 1:0] column_sum   //15 = signed 7b addition + 8 bit ASR >>>
 );
 
 	

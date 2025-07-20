@@ -22,10 +22,12 @@
 module tb_column_processing_unit_top();
 
     // Parameters
+	parameter NUM_UNITS = 2;
     parameter SERIAL_INPUT_LENGTH = 33;
     parameter T2B_OUT_WIDTH = 6;
     parameter NUM_COLUMNS = 8;
     parameter NUM_SEQ_INPUTS = 8;
+	parameter COLUMN_SUM_WIDTH = T2B_OUT_WIDTH + 1 + NUM_SEQ_INPUTS;  //derived parameter //15 
     parameter FINAL_VECTOR_SUM_WIDTH = 24;
     parameter CLK_PERIOD = 10;
     
@@ -38,14 +40,16 @@ module tb_column_processing_unit_top();
 	reg global_accumulation_enable;
     reg start_conversion;
     reg [NUM_COLUMNS-1:0] serial_thermo_in;
-	reg [MAX_THERMO_BITS - 1: 0] tb_thermo_code; 
     
     // Outputs
-    wire signed [NUM_COLUMNS-1:0][(T2B_OUT_WIDTH + 1 + NUM_SEQ_INPUTS) - 1:0] column_sum;
+    wire signed [NUM_COLUMNS-1:0][COLUMN_SUM_WIDTH - 1:0] column_sum;
     wire signed [FINAL_VECTOR_SUM_WIDTH - 1:0] final_vector_sum;
     wire conversion_valid;
     wire column_sum_ready;
     wire processing_complete;
+
+	//internal register 
+	reg [MAX_THERMO_BITS - 1: 0] tb_thermo_code; 
     
     // Test control
     reg TB_DONE = 0;
@@ -53,10 +57,12 @@ module tb_column_processing_unit_top();
     
     // DUT instantiation
     column_processing_unit_top #(
+		.NUM_UNITS(NUM_UNITS),
         .SERIAL_INPUT_LENGTH(SERIAL_INPUT_LENGTH),
         .T2B_OUT_WIDTH(T2B_OUT_WIDTH),
         .NUM_COLUMNS(NUM_COLUMNS),
         .NUM_SEQ_INPUTS(NUM_SEQ_INPUTS),
+		.COLUMN_SUM_WIDTH(COLUMN_SUM_WIDTH),
         .FINAL_VECTOR_SUM_WIDTH(FINAL_VECTOR_SUM_WIDTH)
     ) dut (
         .clk(clk),
